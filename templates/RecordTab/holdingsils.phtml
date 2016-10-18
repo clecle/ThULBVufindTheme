@@ -5,7 +5,6 @@
     $openUrl = $this->openUrl($this->driver, 'holdings');
     $openUrlActive = $openUrl->isActive();
     // Account for replace_other_urls setting
-    $urls = $this->record($this->driver)->getLinkDetails($openUrlActive);
     $offlineMode = $this->ils()->getOfflineMode();
     try {
         $holdings = $this->driver->getRealTimeHoldings();
@@ -36,27 +35,18 @@
 <? $holdingTitleHold = $this->driver->tryMethod('getRealTimeTitleHold'); if (!empty($holdingTitleHold)): ?>
     <a class="placehold" data-lightbox title="<?=$this->transEsc('request_place_text')?>" href="<?=$this->recordLink()->getRequestUrl($holdingTitleHold)?>"><i class="fa fa-flag" aria-hidden="true"></i>&nbsp;<?=$this->transEsc('title_hold_place')?></a>
 <? endif; ?>
-<? if (!empty($urls) || $openUrlActive): ?>
-  <h3><?=$this->transEsc("Internet")?></h3>
-  <? if (!empty($urls)): ?>
-    <? foreach ($urls as $current): ?>
-      <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a><br/>
-    <? endforeach; ?>
-  <? endif; ?>
-  <? if ($openUrlActive): ?><?=$openUrl->renderTemplate()?><? endif; ?>
-<? endif; ?>
 
 <table class="table table-striped">
     <thead>
         <tr>
             <th width="25%">
-                <?=$this->transEsc("ils_item_status")?>
+                <?=$this->transEsc("ils_hold_item_status")?>
             </th>
             <th width="25%">
                 <?=$this->transEsc("Item Notes")?>
             </th>
             <th width="25%">
-                <?=$this->transEsc("ils_item_location")?>
+                <?=$this->transEsc("ils_hold_item_location")?>
             </th>
             <th width="25%">
                 <?=$this->transEsc("Call Number")?>
@@ -100,7 +90,7 @@
                                         <? endif; ?>
                                     <? else: ?>
                                         <? /* Begin Unavailable Items (Recalls) */ ?>
-                                        <span class="text-danger"><?=$this->transEsc($row['status'])?><link property="availability" href="http://schema.org/OutOfStock" /></span>
+                                        <span class="text-danger"><?=$this->transEsc('ils_hold_item_' . $row['status'])?><link property="availability" href="http://schema.org/OutOfStock" /></span>
                                         <? if (isset($row['returnDate']) && $row['returnDate']): ?>&ndash; <span class="small"><?=$this->escapeHtml($row['returnDate'])?></span><? endif; ?>
                                         <? if (isset($row['duedate']) && $row['duedate']): ?>
                                             &ndash; <span class="small"><?=$this->transEsc("Due")?>: <?=$this->escapeHtml($row['duedate'])?></span>
