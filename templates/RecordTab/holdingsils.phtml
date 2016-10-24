@@ -39,16 +39,13 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th width="25%">
+            <th width="20%">
                 <?=$this->transEsc("ils_hold_item_status")?>
             </th>
-            <th width="25%">
-                <?=$this->transEsc("Item Notes")?>
-            </th>
-            <th width="25%">
+            <th width="40%">
                 <?=$this->transEsc("ils_hold_item_location")?>
             </th>
-            <th width="25%">
+            <th width="40%">
                 <?=$this->transEsc("Call Number")?>
             </th>
         </tr>
@@ -117,19 +114,6 @@
                                 <link property="businessFunction" href="http://purl.org/goodrelations/v1#LeaseOut" />
                                 <link property="itemOffered" href="#record" />
                             <? endif; ?>
-                    </td>
-                    <td>
-                        <? if (isset($row['item_notes'])): ?>
-                            <div class="item-notes">
-                                <ul>
-                                <? foreach ($row['item_notes'] as $item_note): ?>
-                                    <li><?=$this->escapeHtml($item_note) ?></li> 
-                                <? endforeach; ?>
-                                </ul>
-                            <? else: ?>
-                                &nbsp;
-                            </div>
-                        <? endif; ?>
                     </td>
                     <td>
                         <? $locationText = $this->transEsc('location_' . $holding['location'], [], $holding['location']); ?>
