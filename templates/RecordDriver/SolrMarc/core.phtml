@@ -1,0 +1,24 @@
+<?
+if($loggedin = $this->auth()->isLoggedIn()) {
+    $user_id = $loggedin->id;
+    $loggedin = true;
+} else {
+    $user_id = false;
+}
+?>
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-striped" summary="<?=$this->transEsc('Bibliographic Details')?>">
+
+            <!-- Titel -->
+            <tr>
+                <th><?= $this->transEsc('Titel') ?>:</th>
+                <td>
+                    <?= $this->thulb_metadatahelper()->Title("givadem") ?>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
