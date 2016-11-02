@@ -58,26 +58,10 @@
                         <?=$this->thulb_holdinghelper()->getAvailability($row);?>
                     </td>
                     <td>
-                        <? $locationText = $this->transEsc('location_' . $holding['location'], [], $holding['location']); ?>
-                        <? if (isset($holding['locationhref']) && $holding['locationhref']): ?>
-                            <a href="<?=$holding['locationhref']?>" target="_blank"><?=$locationText?></a>
-                        <? else: ?>
-                            <?=$locationText?>
-                        <? endif; ?>
+                        <?=$this->thulb_holdinghelper()->getLocation($holding);?>
                     </td>
                     <td>
-                        <? $callNos = $this->tab->getUniqueCallNumbers($holding['items']); if (!empty($callNos)): ?>
-                            <? foreach ($callNos as $callNo): ?>
-                                <? if ($this->callnumberHandler): ?>
-                                    <a href="<?=$this->url('alphabrowse-home') ?>?source=<?=$this->escapeHtmlAttr($this->callnumberHandler) ?>&amp;from=<?=$this->escapeHtmlAttr($callNo) ?>"><?=$this->escapeHtml($callNo)?></a>
-                                <? else: ?>
-                                    <?=$this->escapeHtml($callNo)?>
-                                <? endif; ?>
-                                <br />
-                            <? endforeach; ?>
-                        <? else: ?>
-                            &nbsp;
-                        <? endif; ?>
+                        <?=$this->thulb_holdinghelper()->getCallNumber($holding);?>
                     </td>
                 </tr>
             <? endforeach; ?>
