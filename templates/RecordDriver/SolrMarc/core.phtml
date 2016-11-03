@@ -14,9 +14,9 @@ if($loggedin = $this->auth()->isLoggedIn()) {
 
             <!-- Titel -->
             <tr>
-                <th><?= $this->transEsc('Titel') ?>:</th>
+                <th><?= $this->transEsc('Title') ?>:</th>
                 <td>
-                    <?= $this->thulb_metadatahelper()->Title("givadem") ?>
+                    <?= $this->thulb_metadatahelper()->title($this->driver) ?>
                 </td>
             </tr>
         </table>
