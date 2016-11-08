@@ -5,11 +5,12 @@
     $openUrl = $this->openUrl($this->driver, 'holdings');
     $openUrlActive = $openUrl->isActive();
     // Account for replace_other_urls setting
+    $urls = $this->record($this->driver)->getLinkDetails($openUrlActive);
     $offlineMode = $this->ils()->getOfflineMode();
     try {
         $holdings = $this->driver->getRealTimeHoldings();
     } catch (\VuFind\Exception\ILS $e) {
-        $holdings = [];
+        $holdings = ['holdings' => []];
         $offlineMode = 'ils-offline';
     }
     // Set page title.
@@ -17,6 +18,12 @@
 ?>
 
 <?=$this->context($this)->renderInContext('librarycards/selectcard.phtml', ['user' => $this->auth()->isLoggedIn()]); ?>
+
+<? if (!empty($holdings['blocks'])):?>
+  <div id="account-block-msg" class="alert alert-danger">
+    <?=$this->transEsc('account_block_options_missing', ['%%details%%' => implode('; ', $holdings['blocks'])]) ?>
+  </div>
+<? endif; ?>
 
 <?=($offlineMode == "ils-offline") ? $this->render('Helpers/ils-offline.phtml', ['offlineModeMsg' => 'ils_offline_holdings_message']) : ''?>
 <? if (($this->ils()->getHoldsMode() == 'driver' && !empty($holdings)) || $this->ils()->getTitleHoldsMode() == 'driver'): ?>
@@ -33,7 +40,7 @@
   <? endif; ?>
 <? endif; ?>
 <? $holdingTitleHold = $this->driver->tryMethod('getRealTimeTitleHold'); if (!empty($holdingTitleHold)): ?>
-    <a class="placehold" data-lightbox title="<?=$this->transEsc('request_place_text')?>" href="<?=$this->recordLink()->getRequestUrl($holdingTitleHold)?>"><i class="fa fa-flag" aria-hidden="true"></i>&nbsp;<?=$this->transEsc('title_hold_place')?></a>
+  <a class="placehold" data-lightbox title="<?=$this->transEsc('request_place_text')?>" href="<?=$this->recordLink()->getRequestUrl($holdingTitleHold)?>"><i class="fa fa-flag" aria-hidden="true"></i>&nbsp;<?=$this->transEsc('title_hold_place')?></a>
 <? endif; ?>
 
 <table class="table table-striped">
@@ -51,7 +58,7 @@
         </tr>
     </thead>
     <tbody>
-        <? foreach ($holdings as $holding): ?>
+        <? foreach ($holdings['holdings'] as $holding): ?>
             <? foreach ($holding['items'] as $row): ?>
                 <tr>
                     <td>
