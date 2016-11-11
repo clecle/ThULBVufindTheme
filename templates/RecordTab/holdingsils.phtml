@@ -43,26 +43,46 @@
   <a class="placehold" data-lightbox title="<?=$this->transEsc('request_place_text')?>" href="<?=$this->recordLink()->getRequestUrl($holdingTitleHold)?>"><i class="fa fa-flag" aria-hidden="true"></i>&nbsp;<?=$this->transEsc('title_hold_place')?></a>
 <? endif; ?>
 
+
+<?
+
+  /*
+    gibt es Exemplare ohne Signatur?
+    ablösen durch Funktionsaufruf im DAIA treiber oder via Helper
+  */
+  $show_holdingtab = false;
+  foreach ( $holdings['holdings'] as $holding ):
+    foreach ( $holding['items'] as $item ):
+      if ( $item[callnumber] != '' ) {
+        $show_holdingtab = true;
+      }
+    endforeach;
+  endforeach;
+
+if ( $holdings and $show_holdingtab ) {
+?>
+
+
 <table class="table table-striped">
     <thead>
         <tr>
-            <th width="20%">
+            <th width="31%">
                 <?=$this->transEsc("ils_hold_item_status")?>
             </th>
-            <th width="40%">
+            <th width="31%">
                 <?=$this->transEsc("ils_hold_item_location")?>
             </th>
-            <th width="40%">
+            <th width="31%">
                 <?=$this->transEsc("Call Number")?>
             </th>
         </tr>
     </thead>
     <tbody>
-        <? foreach ($holdings['holdings'] as $holding): ?>
-            <? foreach ($holding['items'] as $row): ?>
+        <? foreach ( $holdings['holdings'] as $holding ): ?>
+            <? foreach ( $holding['items'] as $item ): ?>
                 <tr>
                     <td>
-                        <?=$this->thulb_holdinghelper()->getAvailability($row);?>
+                        <?=$this->thulb_holdinghelper()->getStatus($item);?>
                     </td>
                     <td>
                         <?=$this->thulb_holdinghelper()->getLocation($holding);?>
@@ -75,6 +95,12 @@
         <? endforeach; ?>
     </tbody>
 </table>
+
+<?
+} else {
+  $this->transEsc("see volumes tab for further holdings");
+}
+?>
 
 <? $history = $this->driver->getRealTimeHistory(); ?>
 <? if (is_array($history) && !empty($history)): ?>
