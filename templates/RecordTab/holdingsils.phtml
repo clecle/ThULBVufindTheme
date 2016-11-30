@@ -82,7 +82,7 @@ if ( $holdings and $show_holdingtab ) {
             <? foreach ( $holding['items'] as $item ): ?>
                 <tr>
                     <td>
-                        <?=$this->thulb_holdinghelper()->getStatus($item);?>
+                        <?=$this->thulb_holdinghelper()->getAvailability($item);?>
                     </td>
                     <td>
                         <?=$this->thulb_holdinghelper()->getLocation($holding);?>
