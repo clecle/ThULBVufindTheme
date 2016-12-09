@@ -1,0 +1,220 @@
+$thumbnail-width-small: 60px !default;
+$thumbnail-width-medium: 100px !default;
+$thumbnail-width-large: 160px !default;
+
+.searchForm {
+  margin: 0;
+  padding: 0;
+}
+
+header .container.navbar { margin-bottom: 0; }
+
+.bulkActionButtons label {display: inline-block;}
+.bulkActionButtons label input {margin-top: 2px;}
+.grid { @media (max-width: 767px) {min-height: 250px;} }
+.result {
+  padding-top: 1.5rem;
+  .checkbox {
+    float: left;
+    padding-right: .5rem;
+  }
+  .media,
+  .media-body { overflow: visible; }
+  .media-body .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .media {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    @include clearfix();
+  }
+  .media-left,
+  .media-right {
+    padding: 0;
+    text-align: center;
+    a {
+      display: inline-block;
+      text-align: center;
+    }
+    img {
+      max-width: none;
+      max-height: 300px;
+    }
+    &.small a,
+    &.small > img {
+      width: $thumbnail-width-small;
+      img { max-width: $thumbnail-width-small; }
+    }
+    &.medium a,
+    &.medium > img {
+      width: $thumbnail-width-medium;
+      img { max-width: $thumbnail-width-medium; }
+    }
+    &.large a,
+    &.large > img {
+      width: $thumbnail-width-large;
+      img { max-width: $thumbnail-width-large; }
+    }
+  }
+  .media-left { padding-left: 10px; }
+  .media-right { padding-right: 10px; }
+  .title {font-weight: bold;}
+  .list-tab-content.record .img-col { display: none; }
+  .list-tab-content.record .info-col { width: 100%; }
+
+  @media (max-width: 767px) {
+    a { text-decoration: underline; }
+  }
+  @media (max-width: 530px) {
+    .checkbox { padding: 0; }
+    .media-left { padding-right: 0; }
+  }
+
+  .format {
+    @extend .label;
+    @extend .label-info;
+  }
+}
+
+.result.embedded {
+  .getFull {
+    display: block;
+    margin-left: 1.5rem;
+    padding-right: 30px;
+    border-left: 1px solid transparent;
+  }
+  .getFull.expanded {
+    @extend .list-group-item;
+    margin-top: -11px;
+    margin-left: .75rem;
+    padding-left: .75rem;
+    border-top-left-radius: $border-radius-base;
+    border-top-right-radius: $border-radius-base;
+    &::before {
+      content: '\25BC';
+      position: absolute;
+      right: 15px;
+      color: $gray;
+    }
+  }
+  .loading {
+    @extend .list-group-item;
+    margin-left: .75rem;
+    padding: 1rem;
+    background: #fff;
+  }
+  .long-view {
+    margin-left: .75rem;
+    padding: .5rem;
+    border: 1px solid $list-group-border;
+    background-color: #fff;
+    border-bottom-left-radius: $border-radius-base;
+    border-bottom-right-radius: $border-radius-base;
+  }
+  .long-view .tab-content { padding: 0; }
+  .list-tabs { margin-bottom: 0; }
+  .list-tab-toggle { cursor: pointer; }
+  .list-tab-content { padding: 1rem; }
+}
+
+.search-controls .alert {margin-bottom: 0;}
+.searchtools a {padding: 0 .5em;}
+.title-in-heading {
+  font-size: inherit;
+  font-style: italic;
+}
+
+.wikipedia img { margin-right: 1rem; }
+
+.geoItem {
+    font-size: .9em;
+    margin: 0px 0px 10px;
+}
+
+#moduletab {
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    width: 100%;
+}
+#moduletab ul {
+    cursor: pointer;
+    list-style: outside none none;
+    margin: 0 auto;
+}
+#moduletab li {
+    background-color: #8ab5d7;
+    color: #fff;
+    display: block;
+    height: 66px;
+    padding: 12px 20px;
+    position: relative;
+}
+#moduletab a {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: large;
+    text-decoration: none;
+}
+#moduletab li:hover {
+    background-color: #70bfff;
+}
+#moduletab .show {
+    background-color: #548ebe;
+    box-shadow: none;
+}
+#moduletab .show a {
+    color: #fff;
+}
+#moduletab li.show::after {
+    border-color: transparent transparent transparent #548ebe;
+    border-style: solid;
+    border-width: 33px;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    right: -66px;
+    top: 0;
+    z-index: 10;
+}
+#moduletab li:hover::after {
+    border-color: transparent transparent transparent #70bfff;
+}
+#moduletab_xs {
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+}
+#moduletab_xs ul {
+    cursor: pointer;
+    list-style: outside none none;
+    margin: 0 auto;
+}
+#moduletab_xs li {
+    background-color: #8ab5d7;
+    color: #fff;
+    display: block;
+    height: 66px;
+    padding: 12px 20px;
+    position: relative;
+}
+#moduletab_xs a {
+    cursor: pointer;
+    font-weight: normal;
+    text-decoration: none;
+}
+#moduletab_xs li:hover {
+    background-color: #70bfff;
+}
+#moduletab_xs .show {
+    background-color: #548ebe;
+    box-shadow: none;
+}
+#moduletab_xs .show a {
+    color: #fff;
+}
+
+.resultlist {
+    margin-left: 20px;
+}
