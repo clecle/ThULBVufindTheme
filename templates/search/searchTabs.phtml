@@ -1,4 +1,4 @@
-<? $searchTabs = $this->searchtabs()->getTabConfig($this->searchClassId, $this->lookfor, $this->searchIndex, 'basic', $this->hiddenFilters); ?>
+<? $searchTabs = $this->searchtabs()->getTabConfig($this->searchClassId, $this->lookfor, $this->searchIndex, $this->searchType, $this->hiddenFilters); ?>
 <? if (count($searchTabs) > 0): ?>
   <ul class="list-unstyled">
     <? foreach ($searchTabs as $tab): ?>

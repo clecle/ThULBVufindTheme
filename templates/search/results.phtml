@@ -144,8 +144,8 @@
   <div class="<?=$this->layoutClass('sidebar')?>">
     <div id="moduletab">
       <?
-        $ignoreHiddenFilterMemory = isset($this->ignoreHiddenFilterMemory) && $this->ignoreHiddenFilterMemory;
-        $ignoreHiddenFiltersInRequest = isset($this->ignoreHiddenFiltersInRequest) && $this->ignoreHiddenFiltersInRequest;
+        $ignoreHiddenFilterMemory = isset($this->ignoreHiddenFilterMemory) ? $this->ignoreHiddenFilterMemory : false;
+        $ignoreHiddenFiltersInRequest = isset($this->ignoreHiddenFiltersInRequest) ? $this->ignoreHiddenFiltersInRequest : false;
         $hiddenFilters = $this->searchtabs()->getHiddenFilters($this->searchClassId, $ignoreHiddenFilterMemory, $ignoreHiddenFiltersInRequest);
         if (empty($hiddenFilters) && !$ignoreHiddenFilterMemory) {
           $hiddenFilters = $this->searchMemory()->getLastHiddenFilters($this->searchClassId);
@@ -154,7 +154,12 @@
           }
         }
       ?>
-      <?=$this->context($this)->renderInContext('search/searchTabs', ['hiddenFilters' => $hiddenFilters]); ?>
+      <?=$this->context($this)->renderInContext('search/searchTabs', 
+              ['searchClassId' => $this->params->getSearchClassId(),
+               'lookfor'       => $lookfor,
+               'searchIndex'   => $this->params->getSearchHandler(),
+               'searchType'    => $this->params->getSearchType(),
+               'hiddenFilters' => $hiddenFilters]); ?>
     </div>
     <? foreach ($this->results->getRecommendations('side') as $current): ?>
       <?=$this->recommend($current)?>
