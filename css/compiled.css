@@ -8922,7 +8922,15 @@ header .container.navbar {
 #moduletab_xs .show a {
   color: #fff; }
 
-.resultlist {
+#overlay {
+  display: none;
+  position: absolute;
+  background: #fff; }
+
+#img-load {
+  position: absolute; }
+
+#resultlist {
   margin-left: 20px; }
 
 /* Sidebar rounded corners */

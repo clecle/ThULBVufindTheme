@@ -8861,7 +8861,8 @@ header .container.navbar {
 
 #moduletab a {
   cursor: pointer;
-  font-weight: normal;
+  font-weight: bold;
+  font-size: large;
   text-decoration: none; }
 
 #moduletab li:hover {
@@ -8921,8 +8922,16 @@ header .container.navbar {
 #moduletab_xs .show a {
   color: #fff; }
 
-.resultlist {
-  margin: 10 auto; }
+#overlay {
+  display: none;
+  position: absolute;
+  background: #fff; }
+
+#img-load {
+  position: absolute; }
+
+#resultlist {
+  margin-left: 20px; }
 
 /* Sidebar rounded corners */
 .narrow-toggle {

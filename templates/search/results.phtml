@@ -50,7 +50,11 @@
 
 <div class="row">
   <div class="<?=$this->layoutClass('mainbody')?>">
-      <div class="resultlist">
+      <div id="overlay">
+        <img src="/vufind/themes/thulb/images/Ajax-loader.gif"
+          id="img-load" />
+      </div>
+      <div id="resultlist">
         <? if (($recordTotal = $this->results->getResultTotal()) > 0): // only display these at very top if we have results ?>
           <? foreach ($this->results->getRecommendations('top') as $current): ?>
             <?=$this->recommend($current)?>
