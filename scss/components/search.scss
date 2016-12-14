@@ -216,9 +216,10 @@ header .container.navbar { margin-bottom: 0; }
 }
 
 #overlay { 
-  display:none; 
-  position:absolute; 
-  background:#777; 
+  display: none; 
+  position: absolute; 
+  border-radius: 10px;
+  background: #777; 
 }
 #img-load { 
   position:absolute; 

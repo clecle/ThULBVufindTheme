@@ -293,7 +293,7 @@ function setupFacets() {
   $("#overlay").css({
     opacity : 0.5,
     left    : 20,
-    width   : $("#resultlist").outerWidth() + 20,
+    width   : $("#resultlist").outerWidth() + 25,
     height  : $("#resultlist").outerHeight()
   });
 
