@@ -292,19 +292,20 @@ function keyboardShortcuts() {
 function setupFacets() {
   $("#overlay").css({
     opacity : 0.5,
-    top     : $("#resultlist").offset().top,
-    width   : $("#resultlist").outerWidth(),
+    left    : 20,
+    width   : $("#resultlist").outerWidth() + 20,
     height  : $("#resultlist").outerHeight()
   });
 
   $("#img-load").css({
-    top  : ($("#resultlist").height() / 2),
+    top  : ($("#resultlist").height() / 10),
     left : ($("#resultlist").width() / 2)
   });
     
   // Advanced facets
   $('.facetAND,.facetOR').click(function facetBlocking() {
     $("#resultlist").css('pointer-events', 'none');
+    $("#resultlist").css('opacity', '0.5');
     $("#overlay").fadeIn();
     
     $(this).closest('.collapse').html('<div class="list-group-item">' + VuFind.translate('loading') + '...</div>');
