@@ -66,7 +66,7 @@
               <? if ($rangeFacets[$title]['type'] == 'date'): ?>
                 <div class="slider-container"><input type="text" class="hidden" id="<?=$this->escapeHtmlAttr($title)?><?=$this->escapeHtml($rangeFacets[$title]['type'])?>Slider"/></div>
               <? endif; ?>
-              <input class="btn btn-default" type="submit" value="<?=$this->transEsc('Set')?>"/>
+              <input class="btn btn-default facetRANGE" type="submit" value="<?=$this->transEsc('Set')?>"/>
             </form>
           </div>
           <? if ($rangeFacets[$title]['type'] == 'date'): ?>
@@ -172,7 +172,7 @@ JS;
               <? endif; ?>
             <? endif; ?>
             <? if ($thisFacet['isApplied']): ?>
-              <a class="list-group-item active<? if ($i >= $facets_before_more): ?><?=$moreClass ?><?endif ?><? if ($thisFacet['operator'] == 'OR'): ?> facetOR applied<? endif ?>" href="<?=$this->currentPath().$results->getUrlQuery()->removeFacet($title, $thisFacet['value'], true, $thisFacet['operator']) ?>" title="<?=$this->transEsc('applied_filter') ?>">
+              <a class="list-group-item active<? if ($i >= $facets_before_more): ?><?=$moreClass ?><?endif ?><? if ($thisFacet['operator'] == 'OR'): ?> facetOR applied<? else: ?> facetAND<? endif ?>" href="<?=$this->currentPath().$results->getUrlQuery()->removeFacet($title, $thisFacet['value'], true, $thisFacet['operator']) ?>" title="<?=$this->transEsc('applied_filter') ?>">
                 <? if ($thisFacet['operator'] == 'OR'): ?>
                   <i class="fa fa-check-square-o" aria-hidden="true"></i>
                 <? else: ?>
