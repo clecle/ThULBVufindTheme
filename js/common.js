@@ -299,11 +299,11 @@ function setupFacets() {
       opacity : 0.5,
       left    : 20,
       width   : $("#resultlist").outerWidth() + 25,
-      height  : $("#resultlist").outerHeight() + 5
+      height  : $("#resultlist").outerHeight()
     });
 
     $("#img-load").css({
-      top   : ($("#resultlist").height() / 10),
+      top   : 160,
       left  : ($("#resultlist").width() / 2)
     });
     
