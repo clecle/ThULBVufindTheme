@@ -8929,7 +8929,7 @@ header .container.navbar {
   background: #8ab5d7; }
 
 #img-load {
-  position: absolute; }
+  position: fixed; }
 
 #resultlist {
   margin-left: 20px; }

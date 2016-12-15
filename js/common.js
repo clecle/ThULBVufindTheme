@@ -308,8 +308,8 @@ function setupFacets() {
     });
 
     $("#img-load").css({
-      top   : 160,
-      left  : ($("#resultlist").width() / 2)
+      top   : '50%',
+      left  : '50%'
     });
     
     $("#overlay").fadeIn();
