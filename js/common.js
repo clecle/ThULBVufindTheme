@@ -292,6 +292,11 @@ function keyboardShortcuts() {
 function setupFacets() {
   // Advanced facets
   $('.facetAND,.facetOR').click(function facetBlocking() {
+    $(this).closest('.collapse').html('<div class="list-group-item">' + VuFind.translate('loading') + '...</div>');
+    window.location.assign($(this).attr('href'));
+  });
+
+  $('a[href^="/"],:submit').click(function resultlistOverlay() {
     $("#resultlist").css('pointer-events', 'none');
     $("#resultlist").css('opacity', '0.5');
     
@@ -308,9 +313,6 @@ function setupFacets() {
     });
     
     $("#overlay").fadeIn();
-    
-    $(this).closest('.collapse').html('<div class="list-group-item">' + VuFind.translate('loading') + '...</div>');
-    window.location.assign($(this).attr('href'));
   });
 
   // Side facet status saving
