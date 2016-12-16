@@ -296,7 +296,7 @@ function setupFacets() {
     window.location.assign($(this).attr('href'));
   });
 
-  $('a[href^="/"],a[href="#"],#sort,.facetRANGE').click(function resultlistOverlay() {
+  $('a[href^="/"],a[href="#"],#sort,.facetRANGE,#fulltext_limit,#exclude_newspapers').click(function resultlistOverlay() {
     $("#resultlist").css('pointer-events', 'none');
     $("#resultlist").css('opacity', '0.5');
     
