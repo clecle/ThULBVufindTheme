@@ -50,6 +50,7 @@
     gibt es Exemplare ohne Signatur?
     ablösen durch Funktionsaufruf im DAIA treiber oder via Helper
   */
+  /*
   $show_holdingtab = false;
   foreach ( $holdings['holdings'] as $holding ):
     foreach ( $holding['items'] as $item ):
@@ -58,8 +59,9 @@
       }
     endforeach;
   endforeach;
-
+  
 if ( $holdings and $show_holdingtab ) {
+*/
 ?>
 
 
@@ -88,7 +90,9 @@ if ( $holdings and $show_holdingtab ) {
                         <?=$this->thulb_holdinghelper()->getLocation($holding);?>
                     </td>
                     <td>
-                        <?=$this->thulb_holdinghelper()->getCallNumber($holding);?>
+                        <?=$this->thulb_holdinghelper()->getCallNumber($item);?>
+                        <br>
+                        <?=$this->thulb_holdinghelper()->getHoldingComments($this->driver, $item) ?>
                     </td>
                 </tr>
             <? endforeach; ?>
@@ -97,9 +101,11 @@ if ( $holdings and $show_holdingtab ) {
 </table>
 
 <?
+/*
 } else {
   $this->transEsc("see volumes tab for further holdings");
 }
+*/
 ?>
 
 <? $history = $this->driver->getRealTimeHistory(); ?>
