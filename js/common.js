@@ -297,15 +297,8 @@ function setupFacets() {
   });
 
   $('a[href^="/"],a[href="#"],select[name=sort] option,.facetRANGE,#fulltext_limit,#exclude_newspapers').click(function resultlistOverlay() {
-    $("#resultlist").css('pointer-events', 'none');
-    $("#resultlist").css('opacity', '0.5');
-    
-    $("#overlay").css({
-      opacity : 0.5,
-      left    : 20,
-      width   : $("#resultlist").outerWidth() + 25,
-      height  : $("#resultlist").outerHeight()
-    });
+    $("#searchcontent").css('pointer-events', 'none');
+    $("#searchcontent").css('opacity', '0.5');
 
     $("#img-load").css({
       top   : '50%',
@@ -313,6 +306,7 @@ function setupFacets() {
     });
     
     $("#overlay").fadeIn();
+    $("#img-load").fadeIn();
   });
 
   // Side facet status saving
