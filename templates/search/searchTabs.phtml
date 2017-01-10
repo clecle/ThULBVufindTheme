@@ -3,7 +3,7 @@
   <ul class="list-unstyled">
     <? foreach ($searchTabs as $tab): ?>
       <a <?=$tab['selected'] ? '' : 'href="' . $this->escapeHtmlAttr($tab['url']) . '"' ?>>
-        <li<?=$tab['selected'] ? ' class="show"' : ''?>>
+        <li class="<?=$tab['selected'] ? 'show' : 'facetTAB'?>">
             <?=$this->transEsc($tab['label']); ?>
         </li>
       </a>
