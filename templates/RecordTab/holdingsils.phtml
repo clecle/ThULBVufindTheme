@@ -26,7 +26,7 @@
 <? endif; ?>
 
 <?=($offlineMode == "ils-offline") ? $this->render('Helpers/ils-offline.phtml', ['offlineModeMsg' => 'ils_offline_holdings_message']) : ''?>
-<? if (($this->ils()->getHoldsMode() == 'driver' && !empty($holdings)) || $this->ils()->getTitleHoldsMode() == 'driver'): ?>
+<? if (($this->ils()->getHoldsMode() == 'driver' && !empty($holdings['holdings'])) || $this->ils()->getTitleHoldsMode() == 'driver'): ?>
   <? if ($account->loginEnabled() && $offlineMode != 'ils-offline'): ?>
     <? if (!$user): ?>
       <div class="alert alert-info">
@@ -42,71 +42,59 @@
 <? $holdingTitleHold = $this->driver->tryMethod('getRealTimeTitleHold'); if (!empty($holdingTitleHold)): ?>
   <a class="placehold" data-lightbox title="<?=$this->transEsc('request_place_text')?>" href="<?=$this->recordLink()->getRequestUrl($holdingTitleHold)?>"><i class="fa fa-flag" aria-hidden="true"></i>&nbsp;<?=$this->transEsc('title_hold_place')?></a>
 <? endif; ?>
+<? if (!empty($urls) || $openUrlActive): ?>
+  <h3><?=$this->transEsc("Internet")?></h3>
+  <? if (!empty($urls)): ?>
+  <table class="table table-striped">
+    <tbody>
+    <? foreach ($urls as $current): ?>
+      <tr>
+        <td>
+            <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a><br/>
+        </td>
+      </tr>
+    <? endforeach; ?>
+    </tbody>
+  </table>
+  <? endif; ?>
+  <? if ($openUrlActive): ?><?=$openUrl->renderTemplate()?><? endif; ?>
+<? endif; ?>
 
-
-<?
-
-  /*
-    gibt es Exemplare ohne Signatur?
-    ablösen durch Funktionsaufruf im DAIA treiber oder via Helper
-  */
-  /*
-  $show_holdingtab = false;
-  foreach ( $holdings['holdings'] as $holding ):
-    foreach ( $holding['items'] as $item ):
-      if ( $item[callnumber] != '' ) {
-        $show_holdingtab = true;
-      }
-    endforeach;
-  endforeach;
-  
-if ( $holdings and $show_holdingtab ) {
-*/
-?>
-
-
+<h3><?=$this->transEsc("Physisch")?></h3>
 <table class="table table-striped">
     <thead>
         <tr>
-            <th width="31%">
+            <th class="col-md-2">
                 <?=$this->transEsc("ils_hold_item_status")?>
             </th>
-            <th width="31%">
+            <th class="col-md-5">
                 <?=$this->transEsc("ils_hold_item_location")?>
             </th>
-            <th width="31%">
+            <th class="col-md-5">
                 <?=$this->transEsc("Call Number")?>
             </th>
         </tr>
     </thead>
     <tbody>
-        <? foreach ( $holdings['holdings'] as $holding ): ?>
-            <? foreach ( $holding['items'] as $item ): ?>
-                <tr>
-                    <td>
-                        <?=$this->thulb_holdinghelper()->getAvailability($item);?>
-                    </td>
-                    <td>
-                        <?=$this->thulb_holdinghelper()->getLocation($holding);?>
-                    </td>
-                    <td>
-                        <?=$this->thulb_holdinghelper()->getCallNumber($item);?>
-                        <br>
-                        <?=$this->thulb_holdinghelper()->getHoldingComments($this->driver, $item) ?>
-                    </td>
-                </tr>
-            <? endforeach; ?>
+    <? foreach ( $holdings['holdings'] as $holding ): ?>
+       <? foreach ( $holding['items'] as $item ): ?>
+          <tr>
+              <td>
+                  <?=$this->thulb_holdinghelper()->getAvailability($item);?>
+              </td>
+              <td>
+                  <?=$this->thulb_holdinghelper()->getLocation($holding);?>
+              </td>
+              <td>
+                  <b><?=$this->thulb_holdinghelper()->getCallNumber($item);?></b>
+                  <br>
+                  <?=$this->thulb_holdinghelper()->getHoldingComments($this->driver, $item) ?>
+              </td>
+            </tr>
         <? endforeach; ?>
+    <? endforeach; ?>
     </tbody>
 </table>
-
-<?
-/*
-} else {
-  $this->transEsc("see volumes tab for further holdings");
-}
-*/
-?>
 
 <? $history = $this->driver->getRealTimeHistory(); ?>
 <? if (is_array($history) && !empty($history)): ?>
