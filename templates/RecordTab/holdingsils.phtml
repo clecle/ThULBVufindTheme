@@ -56,14 +56,6 @@
   <?=$this->thulb_holdinghelper()->getLocation($holding);?>
 </h3>
 <table class="table table-striped" summary="<?=$this->transEsc('Holdings details from')?> <?=$this->transEsc($holding['location'])?>">
-  <? $callNos = $this->tab->getUniqueCallNumbers($holding['items']); if (!empty($callNos)): ?>
-  <tr>
-    <th><?=$this->transEsc("Call Number")?>: </th>
-    <td width="50%">
-      <?=$this->thulb_holdinghelper()->getCallNumbers($holding);?>
-    </td>
-  </tr>
-  <? endif; ?>
   <? if (isset($holding['textfields'])): foreach ($holding['textfields'] as $textFieldName => $textFields): ?>
     <tr>
       <? // Translation for summary is a special case for backwards-compatibility ?>
@@ -83,23 +75,33 @@
       $checkILLRequest = isset($row['checkILLRequest']) && $row['checkILLRequest'];
     ?>
     <? if (isset($row['barcode']) && $row['barcode'] != ""): ?>
-      <tr vocab="http://schema.org/" typeof="Offer">
-        <th><?=$this->transEsc("Copy")?> <?=$this->escapeHtml($row['number'])?></th>
-        <td>
-          <?=$this->thulb_holdinghelper()->getAvailability($row);?>
-          <? $comments = $this->thulb_holdinghelper()->getHoldingComments($this->driver, $row); ?>
-          <? if (!empty($comments)) : ?>
-              <div class="item-notes">
-                <b><?=$this->transEsc("Item Notes")?>:</b>
-                <ul>
-                  <? foreach ($comments as $comment) : ?>
-                    <li><?=$this->escapeHtml($comment) ?></li>
-                  <? endforeach; ?>
-                </ul>
-              </div>
-            <? endif; ?>
-        </td>
-      </tr>
+        <tr vocab="http://schema.org/" typeof="Offer">
+            <td>
+                  <dl class="dl-horizontal">
+                      <dt><?=$this->transEsc("Call Number")?></dt>
+                      <dd><strong><?=$this->thulb_holdinghelper()->getCallnumber($row); ?></strong></dd>
+                      <? $comments = $this->thulb_holdinghelper()->getHoldingComments($this->driver, $row); ?>
+                      <? if (!empty($comments)) : ?>
+                            <dt><?=$this->transEsc("Item Notes")?></dt>
+                            <dd>
+                                <? if (count($comments) > 1): ?>
+                                    <div class="item-notes">
+                                        <ul>
+                                            <? foreach ($comments as $comment): ?>
+                                              <li><?=$this->escapeHtml($comment) ?></li>
+                                            <? endforeach; ?>
+                                        </ul>
+                                    </div>
+                                <? else: ?>
+                                    <?=$this->escapeHtml($comments[0]) ?>
+                                <? endif; ?>
+                            </dd>
+                      <? endif; ?>
+                      <dt><?=$this->transEsc("Availability")?></dt>
+                      <dd><?=$this->thulb_holdinghelper()->getAvailability($row);?></dd>
+                  </dl>
+            </td>
+        </tr>
     <? endif; ?>
   <? endforeach; ?>
   <? if (!empty($holding['purchase_history'])): ?>
