@@ -275,9 +275,13 @@ function applyRecordTabHash() {
 function removeEmptyHoldingsTab() {
     var tabContent = $('.holdings-tab').text();
     
-    if(($.trim(tabContent)).length === 0) {
-        $('.description').trigger('click');
-        $('.holdings').addClass('hidden');
+    if (($.trim(tabContent)).length === 0) {
+        if ($('.description')[0]) {
+            $('.description').trigger('click');
+            $('.holdings').addClass('hidden');
+        } else {
+            $('.holdings-tab').text(VuFind.translate('noHoldings'));
+        }
     }
 }
 

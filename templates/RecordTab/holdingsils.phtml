@@ -15,6 +15,11 @@
     }
     // Set page title.
     $this->headTitle($this->translate('Holdings') . ': ' . $this->driver->getBreadcrumb());
+    $this->jsTranslations()->addStrings(
+        [
+            'noHoldings' => 'no_holding_information'
+        ]
+    );
 ?>
 
 <?=$this->context($this)->renderInContext('librarycards/selectcard.phtml', ['user' => $this->auth()->isLoggedIn()]); ?>
