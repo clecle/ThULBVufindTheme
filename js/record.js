@@ -192,6 +192,8 @@ function ajaxLoadTab($newTab, tabid, setHash) {
     } else {
       removeHashFromLocation();
     }
+    
+    fillEmptyHoldingsTab();
   });
   return false;
 }
@@ -272,16 +274,11 @@ function applyRecordTabHash() {
   }
 }
 
-function removeEmptyHoldingsTab() {
+function fillEmptyHoldingsTab() {
     var tabContent = $('.holdings-tab').text();
     
     if (($.trim(tabContent)).length === 0) {
-        if ($('.description')[0]) {
-            $('.description').trigger('click');
-            $('.holdings').addClass('hidden');
-        } else {
-            $('.holdings-tab').text(VuFind.translate('noHoldings'));
-        }
+        $('.holdings-tab').html(VuFind.translate('noHoldings'));
     }
 }
 
@@ -333,5 +330,5 @@ function recordDocReady() {
   
   registerTabEvents();
   applyRecordTabHash();
-  removeEmptyHoldingsTab();
+  fillEmptyHoldingsTab();
 }
