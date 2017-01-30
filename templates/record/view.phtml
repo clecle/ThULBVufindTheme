@@ -16,6 +16,9 @@ $this->headLink()->appendAlternate($this->recordLink()->getActionUrl($this->driv
 $this->layout()->breadcrumbs = '<li>' . $this->searchMemory()->getLastSearchLink($this->transEsc('Search'), '', '</li> ') .
 '<li class="active">' . $this->recordLink()->getBreadcrumb($this->driver) . '</li> ';
 $this->layout()->title = $this->driver->getShortTitle();
+
+$this->layout()->ignoreHiddenFiltersInRequest = true;
+$this->layout()->ignoreHiddenFilterMemory = true;
 ?>
 
 <? if (isset($this->scrollData) && ($this->scrollData['previousRecord'] || $this->scrollData['nextRecord'])): ?>
