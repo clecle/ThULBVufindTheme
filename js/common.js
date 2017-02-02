@@ -361,6 +361,9 @@ $(document).ready(function commonDocReady() {
 
   // support "jump menu" dropdown boxes
   $('select.jumpMenu').change(function jumpMenu(){ $(this).parent('form').submit(); });
+  
+  // support other form input elements to auto submit
+  $('input.jumpMenu').change(function jumpMenu(){ $(this).parent('form').submit(); });
 
   // Checkbox select all
   $('.checkbox-select-all').change(function selectAllCheckboxes() {
