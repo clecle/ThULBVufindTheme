@@ -23,11 +23,11 @@
       <? if (!isset($this->skipTotalCount)): ?>
         <?=$this->transEsc('of')?> <strong><?=$this->localizedNumber($recordTotal)?></strong> <?=$this->transEsc('Items')?>
       <? endif; ?>
-      <?=$this->render('search/controls/newspaperRemoval.phtml', $searchDetails)?>
     </div>
     <div class="pull-right flip">
       <?=$this->render('search/controls/limit.phtml', $searchDetails)?>
       <?=$this->render('search/controls/sort.phtml', $searchDetails)?>
+      <?=$this->render('search/controls/newspaperRemoval.phtml', $searchDetails)?>
     </div>
   </div>
   <form class="form-inline" method="post" name="bulkActionForm" action="<?=$this->url('cart-searchresultsbulk')?>">
