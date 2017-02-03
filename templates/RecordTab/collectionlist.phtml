@@ -38,9 +38,11 @@
 <? else: ?>
   <?=$this->transEsc('collection_empty')?>
   <?
-    $filters = $params->getFilters();
-    if (array_key_exists('-format', $filters)):
-      echo $this->render('search/controls/newspaperRemoval.phtml', $searchDetails);
+    if ($params) :
+      $filters = $params->getFilters();
+      if (array_key_exists('-format', $filters)):
+        echo $this->render('search/controls/newspaperRemoval.phtml', $searchDetails);
+      endif;
     endif;
   ?>
 <? endif; ?>
