@@ -83,11 +83,11 @@
         <tr vocab="http://schema.org/" typeof="Offer">
             <td>
                   <dl class="dl-horizontal">
-                      <dt><?=$this->transEsc("Call Number")?></dt>
+                      <dt><?=$this->transEsc("Call Number")?>:</dt>
                       <dd><strong><?=$this->thulb_holdinghelper()->getCallnumber($row); ?></strong></dd>
                       <? $comments = $this->thulb_holdinghelper()->getHoldingComments($this->driver, $row); ?>
                       <? if (!empty($comments)) : ?>
-                            <dt><?=$this->transEsc("Item Notes")?></dt>
+                            <dt><?=$this->transEsc("Item Notes")?>:</dt>
                             <dd>
                                 <? if (count($comments) > 1): ?>
                                     <div class="item-notes">
@@ -102,7 +102,7 @@
                                 <? endif; ?>
                             </dd>
                       <? endif; ?>
-                      <dt><?=$this->transEsc("Availability")?></dt>
+                      <dt><?=$this->transEsc("Availability Status")?>:</dt>
                       <dd><?=$this->thulb_holdinghelper()->getAvailability($row);?></dd>
                   </dl>
             </td>
