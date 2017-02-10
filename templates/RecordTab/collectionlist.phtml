@@ -11,6 +11,11 @@
       $params = false;
   }
   $searchDetails = ['results' => $results, 'params' => $params, 'indexStart' => 1];
+  $this->jsTranslations()->addStrings(
+        [
+            'noHoldings' => 'see volumes tab for further holdings'
+        ]
+    );
 ?>
 <? if ($results && $params && ($recordTotal = $results->getResultTotal()) > 0): // only display these at very top if we have results ?>
   <? foreach ($results->getRecommendations('top') as $current): ?>
