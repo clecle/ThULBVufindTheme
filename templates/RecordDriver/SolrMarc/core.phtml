@@ -16,6 +16,9 @@
     };
     return ' (' . implode(', ', array_unique(array_map($translate, $roles))) . ')';
   };
+  
+  $formatter = $this->recordDataFormatter();
+  $mainFields = $formatter->getData($this->driver, $formatter->getDefaults('description'));
 ?>
 <div class="row" vocab="http://schema.org/" resource="#record" typeof="<?=$this->driver->getSchemaOrgFormats()?> Product">
   <? $QRCode = $this->record($this->driver)->getQRCode("core");
@@ -248,6 +251,11 @@
             <? endif; ?>
           </td>
         </tr>
+      <? endif; ?>
+      <? if (!empty($mainFields)): ?>
+          <? foreach ($mainFields as $key => $value): ?>
+              <tr><th><?=$this->transEsc($key)?>:</th><td><?=$value?></td></tr>
+          <? endforeach; ?>
       <? endif; ?>
     </table>
     <?/* End Main Details */?>
