@@ -51,7 +51,7 @@
     <?/* Display Main Details */?>
     <?
       $formatter = $this->recordDataFormatter();
-      $coreFields = $formatter->getData($driver, $formatter->getDefaults('core'));
+      $coreFields = array_merge($formatter->getData($driver, $formatter->getDefaults('core')), $formatter->getData($driver, $formatter->getDefaults('description')));
     ?>
     <? if (!empty($coreFields)): ?>
       <table class="table table-striped" summary="<?=$this->transEsc('Bibliographic Details')?>">
