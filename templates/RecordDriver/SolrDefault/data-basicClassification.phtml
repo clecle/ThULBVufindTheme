@@ -1,0 +1,7 @@
+<? $bcl = $this->driver->tryMethod('getBasicClassification'); ?>
+<? if ($bcl): ?>
+    <? foreach ($bcl as $classificationNumber): ?>
+        <? $titles = $this->driver->tryMethod('getConditionalFieldArray', ['084', ['9'], true, ' ', ['a' => $classificationNumber]]); ?>
+        <a href="<?=$this->url('search-results')?>?lookfor=%22<?=$titles[0]?>%22&amp;type=bklname"><?=$classificationNumber?> <?=  implode(' ', $titles)?></a><br />
+    <? endforeach; ?>
+<? endif; ?>
