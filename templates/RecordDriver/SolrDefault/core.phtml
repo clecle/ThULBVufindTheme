@@ -51,11 +51,11 @@
     <?/* Display Main Details */?>
     <?
       $formatter = $this->recordDataFormatter();
-      $coreFields = array_merge($formatter->getData($driver, $formatter->getDefaults('core')), $formatter->getData($driver, $formatter->getDefaults('description')));
+      $metadataFields = $formatter->getData($driver, $formatter->getDefaults('full'));
     ?>
-    <? if (!empty($coreFields)): ?>
+    <? if (!empty($metadataFields)): ?>
       <table class="table table-striped" summary="<?=$this->transEsc('Bibliographic Details')?>">
-        <? foreach ($coreFields as $key => $value): ?>
+        <? foreach ($metadataFields as $key => $value): ?>
           <tr><th><?=$this->transEsc($key)?>:</th><td><?=$value?></td></tr>
         <? endforeach; ?>
       </table>
