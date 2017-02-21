@@ -146,11 +146,21 @@
 
       <? $langs = $this->driver->getLanguages(); if (!empty($langs)): ?>
         <tr>
-          <th><?=$this->transEsc('Language')?>: </th>
-          <td><? foreach ($langs as $lang): ?><?= $this->escapeHtml($lang)?><br/><? endforeach; ?></td>
+          <th><?=$this->transEsc('language')?>: </th>
+          <td><? $i = 0; foreach ($langs as $lang):?><?=($i++ == 0)?'':', '?><?=$this->escapeHtml($this->transEsc($lang))?><? endforeach; ?>
+          </td>
         </tr>
       <? endif; ?>
 
+      <? $langnotes = $this->driver->getLanguageNotes(); if (!empty($langnotes)): ?>
+        <tr>
+          <th><?=$this->transEsc('language_notes')?>: </th>
+          <td><?=$this->escapeHtml($this->transEsc($langnotes))?> </td>
+        </tr>
+      <? endif; ?>
+
+      
+      
       <? $publications = $this->driver->getPublicationDetails(); if (!empty($publications)): ?>
       <tr>
         <th><?=$this->transEsc('Published')?>: </th>
