@@ -1,0 +1,5 @@
+<? $languages = []; ?>
+<? foreach ($data as $lang): ?>
+    <? $languages[] = $this->transEsc($lang); ?>
+<? endforeach; ?>
+<?=implode(', ', $languages)?>
