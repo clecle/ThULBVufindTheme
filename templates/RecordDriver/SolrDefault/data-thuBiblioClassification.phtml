@@ -2,6 +2,10 @@
 <? if ($tbcl): ?>
     <? foreach ($tbcl as $classificationNumber): ?>
         <? $titles = $this->driver->tryMethod('getConditionalFieldArray', ['983', ['b'], true, ' ', ['a' => $classificationNumber]]); ?>
-        <a href="<?=$this->url('search-results')?>?lookfor=%22<?=$titles[0]?>%22&amp;type=class_local_iln"><?=$classificationNumber?> <?=  implode(' ', $titles)?></a><br />
+        <? if ($titles): ?>
+            <a href="<?=$this->url('search-results')?>?lookfor=%22<?=$titles[0]?>%22&amp;type=class_local_iln"><?=$classificationNumber?> <?=  implode(' ', $titles)?></a><br />
+        <? else: ?>
+            <?=$classificationNumber?><br />
+        <? endif; ?>
     <? endforeach; ?>
 <? endif; ?>
