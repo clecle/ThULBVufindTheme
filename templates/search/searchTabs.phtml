@@ -5,6 +5,9 @@
       <a <?=$tab['selected'] ? '' : 'href="' . $this->escapeHtmlAttr($tab['url']) . '"' ?>>
         <li class="<?=$tab['selected'] ? 'show' : 'facetTAB'?>">
             <?=$this->transEsc($tab['label']); ?>
+            <span class="pull-right badge<?=$tab['selected'] ? '' : ' resultNum' . $tab['id']?>">
+                <?=$tab['selected'] ? $this->localizedNumber($this->results->getResultTotal()) : '...' ?>
+            </span>
         </li>
       </a>
     <? endforeach; ?>

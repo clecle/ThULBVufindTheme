@@ -349,6 +349,30 @@ function setupIeSupport() {
   }
 }
 
+function setAsyncResultNum() {
+    var lookfor = $('#searchForm_lookfor').val();
+    var index = '';
+    
+    if ($('span.resultNumSummon').length) {
+        index = 'Summon';
+    } else if ($('span.resultNumSolr').length) {
+        index = 'Solr';
+    }
+    
+    if (index.length > 0) {
+        $.ajax({
+            dataType: 'json',
+            method: 'POST',
+            url: VuFind.path + '/AJAX/JSON?method=getResultCount',
+            data: {'lookfor': lookfor, 'index': index}
+        }).done(function writeCount (response) {
+            $('span.resultNum' + index).text(response.data['count']);
+        }).fail(function() {
+            $('span.resultNum' + index).addClass('hidden');
+        });
+    }
+}
+
 $(document).ready(function commonDocReady() {
   // Start up all of our submodules
   VuFind.init();
@@ -413,6 +437,7 @@ $(document).ready(function commonDocReady() {
   }
 
   setupFacets();
+  setAsyncResultNum();
 
   // retain filter sessionStorage
   $('.searchFormKeepFilters').click(function retainFiltersInSessionStorage() {
