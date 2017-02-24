@@ -351,7 +351,17 @@ function setupIeSupport() {
 
 function setAsyncResultNum() {
     var lookfor = $('#searchForm_lookfor').val();
+    var type = $('#searchForm_type option:checked').val();
     var index = '';
+    
+    
+    if (['AllFields', 'Title', 'Author', 'Subject', 'SubjectTerms'].indexOf(type) < 0) {
+        type = 'AllFields';
+    } else if (type === 'Subject') {
+        type = 'SubjectTerms';
+    } else if (type === 'SubjectTerms') {
+        type = 'Subject';
+    }
     
     if ($('span.resultNumSummon').length) {
         index = 'Summon';
@@ -364,7 +374,7 @@ function setAsyncResultNum() {
             dataType: 'json',
             method: 'POST',
             url: VuFind.path + '/AJAX/JSON?method=getResultCount',
-            data: {'lookfor': lookfor, 'index': index}
+            data: {'lookfor': lookfor, 'index': index, 'type': type}
         }).done(function writeCount (response) {
             $('span.resultNum' + index).text(response.data['count']);
         }).fail(function() {
