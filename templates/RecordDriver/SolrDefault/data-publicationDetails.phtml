@@ -12,4 +12,4 @@
   <? $publications[$i] .= (!empty($field->getDate())) ? '<span property="publicationDate">' . $field->getDate() . '</span>' : ''; ?>
   <? $i++; ?>
 <? endforeach; ?>
-<?=implode('; ', $publications)?>
+<?=implode("<br />", $publications)?>
