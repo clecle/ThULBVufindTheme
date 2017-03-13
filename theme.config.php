@@ -4,6 +4,7 @@ return array(
     'helpers' => [
         'factories' => [
             'recorddataformatter' => 'ThULB\View\Helper\Root\RecordDataFormatterFactory',
+            'recordlink' => 'ThULB\View\Helper\Root\Factory::getRecordLink',
         ],
     ],
 );
