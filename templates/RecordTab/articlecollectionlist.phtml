@@ -32,7 +32,6 @@
     <div class="pull-right flip">
       <?=$this->render('search/controls/limit.phtml', $searchDetails)?>
       <?=$this->render('search/controls/sort.phtml', $searchDetails)?>
-      <?=$this->render('search/controls/newspaperRemoval.phtml', $searchDetails)?>
     </div>
   </div>
   <form class="form-inline" method="post" name="bulkActionForm" action="<?=$this->url('cart-searchresultsbulk')?>">
@@ -42,12 +41,4 @@
   </form>
 <? else: ?>
   <?=$this->transEsc('collection_empty')?>
-  <?
-    if ($params) :
-      $filters = $params->getFilters();
-      if (array_key_exists('-format', $filters)):
-        echo $this->render('search/controls/newspaperRemoval.phtml', $searchDetails);
-      endif;
-    endif;
-  ?>
 <? endif; ?>
