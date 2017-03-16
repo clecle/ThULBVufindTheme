@@ -30,15 +30,12 @@
       <? endif; ?>
     </div>
     <div class="pull-right flip">
-      <?=$this->render('search/controls/limit.phtml', $searchDetails)?>
-      <?=$this->render('search/controls/sort.phtml', $searchDetails)?>
+      <?=str_replace('/AjaxTab', '/NonArticleCollectionList', $this->render('search/controls/limit.phtml', $searchDetails))?>
+      <?=str_replace('/AjaxTab', '/NonArticleCollectionList', $this->render('search/controls/sort.phtml', $searchDetails))?>
     </div>
   </div>
   <form class="form-inline" method="post" name="bulkActionForm" action="<?=$this->url('cart-searchresultsbulk')?>">
-    <?=$this->context($this)->renderInContext('search/bulk-action-buttons.phtml', $searchDetails + ['idPrefix' => ''])?>
     <?=$this->render('search/list-' . $results->getParams()->getView() . '.phtml', $searchDetails)?>
-    <?=$this->paginationControl($results->getPaginator(), 'Sliding', 'search/pagination.phtml', ['results' => $results])?>
+    <?=str_replace('/AjaxTab', '/NonArticleCollectionList', $this->paginationControl($results->getPaginator(), 'Sliding', 'search/pagination.phtml', ['results' => $results]))?>
   </form>
-<? else: ?>
-  <?=$this->transEsc('collection_empty')?>
 <? endif; ?>
