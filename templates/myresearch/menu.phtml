@@ -2,7 +2,7 @@
 <div class="list-group">
   <? if ('ils-none' !== $this->ils()->getOfflineMode()): ?>
     <? if ($this->ils()->checkCapability('getMyTransactions')): ?>
-      <a href="<?=$this->url('myresearch-checkedout')?>" class="list-group-item<?=$this->active == 'checkedout' ? ' active' : ''?>">
+      <a href="<?=$this->url('default', ['controller' => 'my-research', 'action' => 'loans'])?>" class="list-group-item<?=$this->active == 'checkedout' ? ' active' : ''?>">
         <i class="fa fa-fw fa-book" aria-hidden="true"></i> <?=$this->transEsc('Checked Out Items')?>
       </a>
     <? endif; ?>
