@@ -23,7 +23,7 @@
     <? endif; ?>
     <? if ($this->ils()->checkCapability('getMyFines')): ?>
       <a href="<?=$this->url('myresearch-fines')?>" class="list-group-item<?=$this->active == 'fines' ? ' active' : ''?>">
-        <i class="fa fa-fw fa-usd" aria-hidden="true"></i> <?=$this->transEsc('Fines')?>
+        <i class="fa fa-fw fa-eur" aria-hidden="true"></i> <?=$this->transEsc('Fines')?>
       </a>
     <? endif; ?>
     <? if ($this->ils()->checkCapability('getMyProfile')): ?>
