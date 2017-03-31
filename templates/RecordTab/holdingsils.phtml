@@ -5,13 +5,21 @@
     $openUrl = $this->openUrl($this->driver, 'holdings');
     $openUrlActive = $openUrl->isActive();
     // Account for replace_other_urls setting
-    $urls = $this->record($this->driver)->getLinkDetails($openUrlActive);
     $offlineMode = $this->ils()->getOfflineMode();
-    try {
-        $holdings = $this->driver->getRealTimeHoldings();
-    } catch (\VuFind\Exception\ILS $e) {
-        $holdings = ['holdings' => []];
-        $offlineMode = 'ils-offline';
+    
+    /**
+    * do we have Online-Contents only a.k.a. do we need DAIA or not
+    */
+    $Online_holdings_only = $this->driver->isOnlineOnlyRecord();
+    if ($Online_holdings_only) {
+      $online_holdings = $this->driver->getOnlineHoldings();
+    } else {
+      try {
+          $holdings = $this->driver->getRealTimeHoldings();
+      } catch (\VuFind\Exception\ILS $e) {
+          $holdings = ['holdings' => []];
+          $offlineMode = 'ils-offline';
+      }
     }
     // Set page title.
     $this->headTitle($this->translate('Holdings') . ': ' . $this->driver->getBreadcrumb());
@@ -47,80 +55,86 @@
 <? $holdingTitleHold = $this->driver->tryMethod('getRealTimeTitleHold'); if (!empty($holdingTitleHold)): ?>
   <a class="placehold" data-lightbox title="<?=$this->transEsc('request_place_text')?>" href="<?=$this->recordLink()->getRequestUrl($holdingTitleHold)?>"><i class="fa fa-flag" aria-hidden="true"></i>&nbsp;<?=$this->transEsc('title_hold_place')?></a>
 <? endif; ?>
-<? if (!empty($urls) || $openUrlActive): ?>
-  <h3><?=$this->transEsc("Internet")?></h3>
-  <? if (!empty($urls)): ?>
-    <? foreach ($urls as $current): ?>
-      <a href="<?=$this->escapeHtmlAttr($this->proxyUrl($current['url']))?>"><?=$this->escapeHtml($current['desc'])?></a><br/>
-    <? endforeach; ?>
-  <? endif; ?>
-  <? if ($openUrlActive): ?><?=$openUrl->renderTemplate()?><? endif; ?>
-<? endif; ?>
-<? foreach ($holdings['holdings'] as $holding): ?>
-<h3>
-  <?=$this->thulb_holdinghelper()->getLocation($holding);?>
-</h3>
-<table class="table table-striped" summary="<?=$this->transEsc('Holdings details from')?> <?=$this->transEsc($holding['location'])?>">
-  <? if (isset($holding['textfields'])): foreach ($holding['textfields'] as $textFieldName => $textFields): ?>
-    <tr>
-      <? // Translation for summary is a special case for backwards-compatibility ?>
-      <th><?=$textFieldName == 'summary' ? $this->transEsc("Volume Holdings") : $this->transEsc(ucfirst($textFieldName))?>:</th>
-      <td>
-        <? foreach ($textFields as $current): ?>
-          <?=$this->escapeHtml($current)?><br/>
-        <? endforeach; ?>
-      </td>
-    </tr>
-  <? endforeach; endif; ?>
-  <? foreach ($holding['items'] as $row): ?>
-    <?
-      // AJAX Check record?
-      $check = isset($row['check']) && $row['check'];
-      $checkStorageRetrievalRequest = isset($row['checkStorageRetrievalRequest']) && $row['checkStorageRetrievalRequest'];
-      $checkILLRequest = isset($row['checkILLRequest']) && $row['checkILLRequest'];
-    ?>
-    <? if (isset($row['barcode']) && $row['barcode'] != ""): ?>
-        <tr vocab="http://schema.org/" typeof="Offer">
+
+
+<? if ($Online_holdings_only): ?>
+  <h3><?=$this->transEsc("accessible_from_remote")?></h3>
+  jo
+<? else: ?>
+
+  <? foreach ($holdings['holdings'] as $holding): ?>
+  <h3>
+    <?=$this->thulb_holdinghelper()->getLocation($holding);?>
+  </h3>
+  <table class="table table-striped" summary="<?=$this->transEsc('Holdings details from')?> <?=$this->transEsc($holding['location'])?>">
+    <? if (isset($holding['textfields'])): foreach ($holding['textfields'] as $textFieldName => $textFields): ?>
+      <tr>
+        <? // Translation for summary is a special case for backwards-compatibility ?>
+        <th><?=$textFieldName == 'summary' ? $this->transEsc("Volume Holdings") : $this->transEsc(ucfirst($textFieldName))?>:</th>
+        <td>
+          <? foreach ($textFields as $current): ?>
+            <?=$this->escapeHtml($current)?><br/>
+          <? endforeach; ?>
+        </td>
+      </tr>
+    <? endforeach; endif; ?>
+    <? foreach ($holding['items'] as $row): ?>
+      <?
+        // AJAX Check record?
+        $check = isset($row['check']) && $row['check'];
+        $checkStorageRetrievalRequest = isset($row['checkStorageRetrievalRequest']) && $row['checkStorageRetrievalRequest'];
+        $checkILLRequest = isset($row['checkILLRequest']) && $row['checkILLRequest'];
+      ?>
+      <? if (isset($row['barcode']) && $row['barcode'] != ""): ?>
+          <tr vocab="http://schema.org/" typeof="Offer">
             <td>
-                  <dl class="dl-horizontal">
-                      <dt><?=$this->transEsc("Call Number")?>:</dt>
-                      <dd><strong><?=$this->thulb_holdinghelper()->getCallnumber($row); ?></strong></dd>
-                      <? $comments = $this->thulb_holdinghelper()->getHoldingComments($this->driver, $row); ?>
-                      <? if (!empty($comments)) : ?>
-                            <dt><?=$this->transEsc("Item Notes")?>:</dt>
-                            <dd>
-                                <? if (count($comments) > 1): ?>
-                                    <div class="item-notes">
-                                        <ul>
-                                            <? foreach ($comments as $comment): ?>
-                                              <li><?=$this->escapeHtml($comment) ?></li>
-                                            <? endforeach; ?>
-                                        </ul>
-                                    </div>
-                                <? else: ?>
-                                    <?=$this->escapeHtml($comments[0]) ?>
-                                <? endif; ?>
-                            </dd>
-                      <? endif; ?>
-                      <dt><?=$this->transEsc("Availability Status")?>:</dt>
-                      <dd><?=$this->thulb_holdinghelper()->getAvailability($row);?></dd>
-                  </dl>
+              <dl class="dl-horizontal">
+                <? $callno = $this->thulb_holdinghelper()->getCallnumber($row); ?>
+                <? if ($callno != "Unknown" ): ?>
+                  <dt><?=$this->transEsc("Call Number")?>:</dt>
+                  <dd><strong><?=$callno; ?></strong></dd>
+                <? endif; ?>
+                <? $comments = $this->thulb_holdinghelper()->getHoldingComments($this->driver, $row); ?>
+                <? if (!empty($comments)) : ?>
+                  <dt><?=$this->transEsc("Item Notes")?>:</dt>
+                  <dd>
+                  <? if (count($comments) > 1): ?>
+                    <div class="item-notes">
+                      <ul>
+                        <? foreach ($comments as $comment): ?>
+                          <li><?=$this->escapeHtml($comment) ?></li>
+                        <? endforeach; ?>
+                      </ul>
+                    </div>
+                  <? else: ?>
+                    <?=$this->escapeHtml($comments[0]) ?>
+                  <? endif; ?>
+                  </dd>
+                <? endif; ?>
+                <? if ($callno != "Unknown" ): ?>
+                  <dt><?=$this->transEsc("Availability Status")?>:</dt>
+                  <dd><?=$this->thulb_holdinghelper()->getAvailability($row);?></dd>
+                <? endif; ?>
+              </dl>
             </td>
-        </tr>
+          </tr>
+      <? endif; ?>
+    <? endforeach; ?>
+
+    <? if (!empty($holding['purchase_history'])): ?>
+      <tr>
+        <th><?=$this->transEsc("Most Recent Received Issues")?>:</th>
+        <td>
+          <? foreach ($holding['purchase_history'] as $current): ?>
+            <?=$this->escapeHtml($current['issue'])?><br/>
+          <? endforeach; ?>
+        </td>
+      </tr>
     <? endif; ?>
+  </table>
   <? endforeach; ?>
-  <? if (!empty($holding['purchase_history'])): ?>
-    <tr>
-      <th><?=$this->transEsc("Most Recent Received Issues")?>:</th>
-      <td>
-        <? foreach ($holding['purchase_history'] as $current): ?>
-          <?=$this->escapeHtml($current['issue'])?><br/>
-        <? endforeach; ?>
-      </td>
-    </tr>
-  <? endif; ?>
-</table>
-<? endforeach; ?>
+<? endif; /* ONLINE via Marc OR PRINT via DAIA */ ?>
+
 
 <? $history = $this->driver->getRealTimeHistory(); ?>
 <? if (is_array($history) && !empty($history)): ?>
