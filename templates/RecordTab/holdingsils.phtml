@@ -61,13 +61,13 @@
   <h3><?=$this->transEsc("accessible_from_remote")?></h3>
   <? foreach ($online_holdings as $holds): ?>
     <tr vocab="http://schema.org/" typeof="Offer">
-    <? list($txt, $url, $details) = explode("|", $holds); ?>
+    <? list($txt, $url, $more) = explode("|", $holds); ?>
       <td>
         <dl class="dl-horizontal">
           <dt><?=$txt ?></dt>
           <dd><?="<a href='" . $url . "' target='_blank'>" . $url . "</a><br>"; ?></dd>
           <dt><?=$this->transEsc("Item Notes")?>:</dt>
-          <dd><?=$details?></dd>
+          <dd><?=$more?></dd>
         </dl>
       </td>
     </tr>
