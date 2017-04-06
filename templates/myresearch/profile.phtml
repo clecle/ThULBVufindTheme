@@ -26,10 +26,21 @@
           [
             $this->transEsc('Name') => 'name',
             $this->transEsc('Address') => 'address1',
-            $this->transEsc('Email') => 'email'
+            $this->transEsc('Email') => 'email',
           ]
         );
-       ?>
+        
+        $accountinfo = [
+            'group'  => ($this->profile['groupcode']) ? $this->transEsc('UserGroup::' . $this->profile['groupcode']) : null,
+            'status' => ($this->profile['statuscode']) ? $this->transEsc('UserStatus::' . $this->profile['statuscode']) : null,
+          ];
+        echo $this->renderArray(
+          $arrTemplate, $accountinfo,
+          [
+            $this->transEsc('User Group') => 'group',
+            $this->transEsc('User Status') => 'status',
+          ]
+        ); ?>
       <? if ($showHomeLibForm): ?>
         <tr><th><?=$this->transEsc('Preferred Library')?>:</th>
         <?
