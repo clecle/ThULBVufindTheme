@@ -10,8 +10,8 @@
     /**
     * do we have Online-Contents only a.k.a. do we need DAIA or not
     */
-    $Online_holdings_only = $this->driver->isOnlineOnlyRecord();
-    if ($Online_holdings_only) {
+    $online_holdings_only = $this->driver->isOnlineOnlyRecord();
+    if ($online_holdings_only) {
       $online_holdings = $this->driver->getOnlineHoldings();
     } else {
       try {
@@ -57,9 +57,22 @@
 <? endif; ?>
 
 
-<? if ($Online_holdings_only): ?>
+<? if ( $online_holdings_only && !empty($online_holdings) ): ?>
   <h3><?=$this->transEsc("accessible_from_remote")?></h3>
-  jo
+  <? foreach ($online_holdings as $holds): ?>
+    <tr vocab="http://schema.org/" typeof="Offer">
+    <? list($txt, $url, $details) = explode("|", $holds); ?>
+      <td>
+        <dl class="dl-horizontal">
+          <dt><?=$txt ?></dt>
+          <dd><?="<a href='" . $url . "' target='_blank'>" . $url . "</a><br>"; ?></dd>
+          <dt><?=$this->transEsc("Item Notes")?>:</dt>
+          <dd><?=$details?></dd>
+        </dl>
+      </td>
+    </tr>
+  <? endforeach; ?>
+
 <? else: ?>
 
   <? foreach ($holdings['holdings'] as $holding): ?>
