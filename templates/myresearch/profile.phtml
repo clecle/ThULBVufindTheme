@@ -31,8 +31,8 @@
         );
         
         $accountinfo = [
-            'group'  => ($this->profile['groupcode']) ? $this->transEsc('UserGroup::' . $this->profile['groupcode']) : null,
-            'status' => ($this->profile['statuscode']) ? $this->transEsc('UserStatus::' . $this->profile['statuscode']) : null,
+            'group'  => (isset($this->profile['groupcode'])) ? $this->transEsc('UserGroup::' . $this->profile['groupcode']) : null,
+            'status' => (isset($this->profile['statuscode'])) ? $this->transEsc('UserStatus::' . $this->profile['statuscode']) : null,
           ];
         echo $this->renderArray(
           $arrTemplate, $accountinfo,
