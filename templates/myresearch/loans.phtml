@@ -103,6 +103,24 @@
               <strong><?=$this->transEsc('sort_callnumber')?>:</strong> <?=$this->escapeHtml($ilsDetails['callnumber'])?>
               <br />
             <? endif; ?>
+            
+            <? if (isset($ilsDetails['renew'])): ?>
+              <strong><?=$this->transEsc('Renewed')?>:</strong> <?=$this->transEsc($ilsDetails['renew'])?>
+              <? if (isset($ilsDetails['renewLimit'])): ?>
+                / <?=$this->transEsc($ilsDetails['renewLimit'])?>
+              <? endif; ?>
+              <br />
+            <? endif; ?>
+            
+            <? if (isset($ilsDetails['reminder'])): ?>
+              <strong><?=$this->transEsc('Reminder')?>:</strong> <?=$this->transEsc($ilsDetails['reminder'])?>
+              <br />
+            <? endif; ?>
+            
+            <? if (isset($ilsDetails['queue']) && $ilsDetails['queue'] > 0): ?>
+              <strong><?=$this->transEsc('Holds and Recalls')?>:</strong> <?=$this->transEsc($ilsDetails['queue'])?>
+              <br />
+            <? endif; ?>
 
             <? $showStatus = true; ?>
 
@@ -110,7 +128,7 @@
               <? $renewDetails = $this->renewResult[$ilsDetails['item_id']]; ?>
               <? if (isset($renewDetails['success']) && $renewDetails['success']): ?>
                 <? $showStatus = false; ?>
-                <strong><?=$this->transEsc('Due Date')?>: <?=$this->escapeHtml($renewDetails['new_date'])?> <? if (isset($renewDetails['new_time'])): ?></strong><?=$this->escapeHtml($renewDetails['new_time'])?><? endif; ?>
+                <strong><?=$this->transEsc('Due Date')?>: <?=$this->escapeHtml($renewDetails['new_date'])?></strong> <? if (isset($renewDetails['new_time'])): ?><?=$this->escapeHtml($renewDetails['new_time'])?><? endif; ?>
                 <div class="alert alert-success"><?=$this->transEsc('renew_success')?></div><br />
               <? else: ?>
                 <strong><?=$this->transEsc('Due Date')?>: <?=$this->escapeHtml($ilsDetails['duedate'])?><? if (isset($ilsDetails['dueTime'])): ?></strong><?=$this->escapeHtml($ilsDetails['dueTime'])?><? endif; ?>
@@ -126,19 +144,6 @@
                 <? endif; ?>
                 <br />
               <? endif; ?>
-            <? endif; ?>
-            
-            <? if (isset($ilsDetails['renew'])): ?>
-              <strong><?=$this->transEsc('Renewed')?>:</strong> <?=$this->transEsc($ilsDetails['renew'])?>
-              <? if (isset($ilsDetails['renewLimit'])): ?>
-                / <?=$this->transEsc($ilsDetails['renewLimit'])?>
-              <? endif; ?>
-              <br />
-            <? endif; ?>
-            
-            <? if (isset($ilsDetails['reminder'])): ?>
-              <strong><?=$this->transEsc('Reminder')?>:</strong> <?=$this->transEsc($ilsDetails['reminder'])?>
-              <br />
             <? endif; ?>
             
             <? /* Depending on the ILS driver, the "location" value may be a string or an ID; figure out the best
