@@ -104,7 +104,7 @@
               <br />
             <? endif; ?>
             
-            <? if (isset($ilsDetails['renew'])): ?>
+            <? if (isset($ilsDetails['renew']) && $ilsDetails['renew'] > 0): ?>
               <strong><?=$this->transEsc('Renewed')?>:</strong> <?=$this->transEsc($ilsDetails['renew'])?>
               <? if (isset($ilsDetails['renewLimit'])): ?>
                 / <?=$this->transEsc($ilsDetails['renewLimit'])?>
@@ -112,7 +112,7 @@
               <br />
             <? endif; ?>
             
-            <? if (isset($ilsDetails['reminder'])): ?>
+            <? if (isset($ilsDetails['reminder']) && $ilsDetails['reminder'] > 0): ?>
               <strong><?=$this->transEsc('Reminder')?>:</strong> <?=$this->transEsc($ilsDetails['reminder'])?>
               <br />
             <? endif; ?>
