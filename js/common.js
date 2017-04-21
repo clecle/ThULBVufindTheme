@@ -383,6 +383,34 @@ function setAsyncResultNum() {
     }
 }
 
+function setupTruncations() {
+    var truncatedElements = $('p.truncate');
+    var truncationLength = 300;
+    
+    truncatedElements.each(function() { 
+        var t = $(this).text();
+        if(t.length < truncationLength) {
+            return;
+        }
+        
+        $(this).html(
+            t.slice(0,truncationLength)+'<a href="#" class="more"> ' + VuFind.translate('truncate_more') + '</a>'+
+            '<span style="display:none;">'+ t.slice(truncationLength,t.length)+' <a href="#" class="less"> ' + VuFind.translate('truncate_less') + '</a></span>'
+        );
+    });
+    
+    $('a.more', truncatedElements).click(function(event){
+        event.preventDefault();
+        $(this).hide().prev().hide();
+        $(this).next().show();        
+    });
+    
+    $('a.less', truncatedElements).click(function(event){
+        event.preventDefault();
+        $(this).parent().hide().prev().show().prev().show();    
+    });
+}
+
 $(document).ready(function commonDocReady() {
   // Start up all of our submodules
   VuFind.init();
@@ -392,6 +420,8 @@ $(document).ready(function commonDocReady() {
   setupOffcanvas();
   // Keyboard shortcuts in detail view
   keyboardShortcuts();
+  // truncation for paragraphs
+  setupTruncations();
 
   // support "jump menu" dropdown boxes
   $('select.jumpMenu').change(function jumpMenu(){ $(this).parent('form').submit(); });
