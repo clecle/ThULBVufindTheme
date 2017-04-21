@@ -10,16 +10,12 @@
     /**
     * do we have Online-Contents only a.k.a. do we need DAIA or not
     */
-    $online_holdings_only = $this->driver->isOnlineOnlyRecord();
-    if ($online_holdings_only) {
-      $online_holdings = $this->driver->getOnlineHoldings();
-    } else {
-      try {
-          $holdings = $this->driver->getRealTimeHoldings();
-      } catch (\VuFind\Exception\ILS $e) {
-          $holdings = ['holdings' => []];
-          $offlineMode = 'ils-offline';
-      }
+    $online_holdings = $this->driver->getOnlineHoldings();
+    try {
+        $holdings = $this->driver->getRealTimeHoldings();
+    } catch (\VuFind\Exception\ILS $e) {
+        $holdings = ['holdings' => []];
+        $offlineMode = 'ils-offline';
     }
     // Set page title.
     $this->headTitle($this->translate('Holdings') . ': ' . $this->driver->getBreadcrumb());
@@ -57,17 +53,24 @@
 <? endif; ?>
 
 
-<? if ( $online_holdings_only && !empty($online_holdings) ): ?>
-  <h3><?=$this->transEsc("accessible_from_remote")?></h3>
+<? if ( !empty($online_holdings) ): ?>
+<h3><a href="http://www.thulb.uni-jena.de/Datenbanken.html" target="_blank"><?=$this->transEsc("accessible_from_remote")?></a></h3>
   <? foreach ($online_holdings as $holds): ?>
     <tr vocab="http://schema.org/" typeof="Offer">
-    <? list($txt, $url, $more) = explode("|", $holds); ?>
+    <? list($txt, $url, $more, $pic) = explode("|", $holds); ?>
       <td>
         <dl class="dl-horizontal">
-          <dt><?=$txt ?></dt>
-          <dd><?="<a href='" . $url . "' target='_blank'>" . $url . "</a><br>"; ?></dd>
+          <dt><?=$this->transEsc($txt)?>:</dt>
+          <dd><?="<a href='" . $url . "' target='_blank'>" . $url . "</a>"; ?></dd>
+          <? if ( !empty($more) || !empty($pic) ): ?>
           <dt><?=$this->transEsc("Item Notes")?>:</dt>
-          <dd><?=$more?></dd>
+          <dd>
+              <?=$more?>
+              <? if ( !empty($pic) ): ?>
+                <?="<img src='$pic' />"?>
+              <? endif; ?>
+          </dd>
+          <? endif; ?>
         </dl>
       </td>
     </tr>
