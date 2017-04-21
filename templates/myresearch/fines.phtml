@@ -16,15 +16,15 @@
   <? else: ?>
     <table class="table table-striped" summary="<?=$this->transEsc('Your Fines')?>">
     <tr>
-      <th colspan="3"><?=$this->transEsc('Title')?></th>
-      <th colspan="2"><?=$this->transEsc('Fine')?></th>
+      <th colspan="4"><?=$this->transEsc('Title')?></th>
+      <th><?=$this->transEsc('Fine')?></th>
       <th><?=$this->transEsc('Date of creation')?></th>
       <th><?=$this->transEsc('Fee')?></th>
     </tr>
     <? $totalDue = 0; ?>
     <? foreach ($this->fines as $record): ?>
       <tr>
-        <td colspan="3">
+        <td colspan="4">
           <? if (isset($record['about']) && !empty($record['about'])): ?>
             <?=$this->escapeHtml(trim($record['about'], '/:'))?>
           <? elseif (empty($record['title'])): ?>
@@ -35,7 +35,7 @@
             <a href="<?=$this->recordLink()->getUrl($record['driver'])?>"><?=$this->escapeHtml(trim($record['title'], '/:'))?></a>
           <? endif; ?>
         </td>
-        <td colspan="2"><?=isset($record['fine']) ? $this->escapeHtml($record['fine']) : ''?></td>
+        <td><?=isset($record['fine']) ? $this->escapeHtml($record['fine']) : ''?></td>
         <td><?=isset($record['createdate']) ? $this->escapeHtml(trim($record['createdate'])) : ''?></td>
         <td><?=isset($record['balance']) ? $this->safeMoneyFormat($record['balance']/100.00) : ''?></td>
       </tr>
