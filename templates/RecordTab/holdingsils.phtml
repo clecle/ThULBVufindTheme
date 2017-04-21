@@ -55,6 +55,7 @@
 
 <? if ( !empty($online_holdings) ): ?>
 <h3><a href="http://www.thulb.uni-jena.de/Datenbanken.html" target="_blank"><?=$this->transEsc("accessible_from_remote")?></a></h3>
+  <table class="table table-striped">
   <? foreach ($online_holdings as $holds): ?>
     <tr vocab="http://schema.org/" typeof="Offer">
     <? list($txt, $url, $more, $pic) = explode("|", $holds); ?>
@@ -75,9 +76,10 @@
       </td>
     </tr>
   <? endforeach; ?>
+  </table>
+<? endif; ?>
 
-<? else: ?>
-
+<? if ( !empty($holdings) ): ?>
   <? foreach ($holdings['holdings'] as $holding): ?>
   <h3>
     <?=$this->thulb_holdinghelper()->getLocation($holding);?>
@@ -149,8 +151,7 @@
     <? endif; ?>
   </table>
   <? endforeach; ?>
-<? endif; /* ONLINE via Marc OR PRINT via DAIA */ ?>
-
+<? endif; ?>
 
 <? $history = $this->driver->getRealTimeHistory(); ?>
 <? if (is_array($history) && !empty($history)): ?>
