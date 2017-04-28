@@ -131,7 +131,7 @@
                   <? endif; ?>
                   </dd>
                 <? endif; ?>
-                <? if ($callno != "Unknown" ): ?>
+                <? if ($callno != "Unknown" && $callno != "bestellt" ): ?>
                   <dt><?=$this->transEsc("Availability Status")?>:</dt>
                   <dd><?=$this->thulb_holdinghelper()->getAvailability($row);?></dd>
                 <? endif; ?>
