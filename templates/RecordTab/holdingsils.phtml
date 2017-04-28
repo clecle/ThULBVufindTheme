@@ -55,13 +55,14 @@
 
 <? if ( !empty($online_holdings) ): ?>
 <h3><a href="http://www.thulb.uni-jena.de/Datenbanken.html" target="_blank"><?=$this->transEsc("accessible_from_remote")?></a></h3>
+  <table class="table table-striped">
   <? foreach ($online_holdings as $holds): ?>
     <tr vocab="http://schema.org/" typeof="Offer">
     <? list($txt, $url, $more, $pic) = explode("|", $holds); ?>
       <td>
         <dl class="dl-horizontal">
-          <dt><?=$this->transEsc($txt)?>:</dt>
-          <dd><?="<a href='" . $url . "' target='_blank'>" . $url . "</a>"; ?></dd>
+          <dt><?=$this->transEsc('Link')?>:</dt>
+          <dd><?="<a href='" . $url . "' target='_blank'>" . $this->transEsc($txt) . "</a>"; ?></dd>
           <? if ( !empty($more) || !empty($pic) ): ?>
           <dt><?=$this->transEsc("Item Notes")?>:</dt>
           <dd>
@@ -75,14 +76,17 @@
       </td>
     </tr>
   <? endforeach; ?>
+  </table>
+<? endif; ?>
 
-<? else: ?>
-
+<? if ( !empty($holdings) ): ?>
   <? foreach ($holdings['holdings'] as $holding): ?>
-  <h3>
-    <?=$this->thulb_holdinghelper()->getLocation($holding);?>
-  </h3>
-  <table class="table table-striped" summary="<?=$this->transEsc('Holdings details from')?> <?=$this->transEsc($holding['location'])?>">
+    <? $holding_location = $this->thulb_holdinghelper()->getLocation($holding); ?>
+    <? if ($holding_location != "Unknown" ): /* No Callnumber? So we only have Remote-Access. Show nothing from DAIA - its covered via MARC 981 */ ?>
+    <h3>
+      <?=$this->thulb_holdinghelper()->getLocation($holding);?>
+    </h3>
+    <table class="table table-striped" summary="<?=$this->transEsc('Holdings details from')?> <?=$this->transEsc($holding['location'])?>">
     <? if (isset($holding['textfields'])): foreach ($holding['textfields'] as $textFieldName => $textFields): ?>
       <tr>
         <? // Translation for summary is a special case for backwards-compatibility ?>
@@ -127,7 +131,7 @@
                   <? endif; ?>
                   </dd>
                 <? endif; ?>
-                <? if ($callno != "Unknown" ): ?>
+                <? if ($callno != "Unknown" && $callno != "bestellt" ): ?>
                   <dt><?=$this->transEsc("Availability Status")?>:</dt>
                   <dd><?=$this->thulb_holdinghelper()->getAvailability($row);?></dd>
                 <? endif; ?>
@@ -147,10 +151,10 @@
         </td>
       </tr>
     <? endif; ?>
-  </table>
+    </table>
+    <? endif; /* Callnumber != Unknown */?>
   <? endforeach; ?>
-<? endif; /* ONLINE via Marc OR PRINT via DAIA */ ?>
-
+<? endif; ?>
 
 <? $history = $this->driver->getRealTimeHistory(); ?>
 <? if (is_array($history) && !empty($history)): ?>
