@@ -61,8 +61,8 @@
     <? list($txt, $url, $more, $pic) = explode("|", $holds); ?>
       <td>
         <dl class="dl-horizontal">
-          <dt><?=$this->transEsc($txt)?>:</dt>
-          <dd><?="<a href='" . $url . "' target='_blank'>" . $url . "</a>"; ?></dd>
+          <dt><?=$this->transEsc('Link')?>:</dt>
+          <dd><?="<a href='" . $url . "' target='_blank'>" . $this->transEsc($txt) . "</a>"; ?></dd>
           <? if ( !empty($more) || !empty($pic) ): ?>
           <dt><?=$this->transEsc("Item Notes")?>:</dt>
           <dd>
@@ -81,10 +81,12 @@
 
 <? if ( !empty($holdings) ): ?>
   <? foreach ($holdings['holdings'] as $holding): ?>
-  <h3>
-    <?=$this->thulb_holdinghelper()->getLocation($holding);?>
-  </h3>
-  <table class="table table-striped" summary="<?=$this->transEsc('Holdings details from')?> <?=$this->transEsc($holding['location'])?>">
+    <? $holding_location = $this->thulb_holdinghelper()->getLocation($holding); ?>
+    <? if ($holding_location != "Unknown" ): /* No Callnumber? So we only have Remote-Access. Show nothing from DAIA - its covered via MARC 981 */ ?>
+    <h3>
+      <?=$this->thulb_holdinghelper()->getLocation($holding);?>
+    </h3>
+    <table class="table table-striped" summary="<?=$this->transEsc('Holdings details from')?> <?=$this->transEsc($holding['location'])?>">
     <? if (isset($holding['textfields'])): foreach ($holding['textfields'] as $textFieldName => $textFields): ?>
       <tr>
         <? // Translation for summary is a special case for backwards-compatibility ?>
@@ -149,7 +151,8 @@
         </td>
       </tr>
     <? endif; ?>
-  </table>
+    </table>
+    <? endif; /* Callnumber != Unknown */?>
   <? endforeach; ?>
 <? endif; ?>
 
