@@ -27,7 +27,7 @@
         </div>
 
         <div>
-           <?=$this->context($this)->renderInContext('RecordDriver/' . substr(strrchr(get_class($this->driver), '\\'), 1) . '/result-list-publicationDetails.phtml', ['driver' => $this->driver])?>
+           <?=$this->record($this->driver)->renderTemplate('result-list-publicationDetails.phtml')?>
         </div>
 
         <?
