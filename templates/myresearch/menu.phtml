@@ -2,12 +2,17 @@
 <div class="list-group">
   <? if ('ils-none' !== $this->ils()->getOfflineMode()): ?>
     <? if ($this->ils()->checkCapability('getMyTransactions')): ?>
-      <a href="<?=$this->url('default', ['controller' => 'my-research', 'action' => 'loans'])?>" class="list-group-item<?=$this->active == 'checkedout' ? ' active' : ''?>">
+      <a href="<?=$this->url('myresearch-checkedout')?>" class="list-group-item<?=$this->active == 'checkedout' ? ' active' : ''?>">
         <i class="fa fa-fw fa-book" aria-hidden="true"></i> <?=$this->transEsc('Checked Out Items')?>
       </a>
     <? endif; ?>
-    <? if ($this->ils()->checkCapability('getMyHolds')): ?>
-      <a href="<?=$this->url('myresearch-holds')?>" class="list-group-item<?=$this->active == 'holds' ? ' active' : ''?>">
+    <? if ($this->ils()->checkCapability('getMyProvidedItems')): ?>
+      <a href="<?=$this->url('default', ['controller' => 'my-research', 'action' => 'provided'])?>" class="list-group-item<?=$this->active == 'provided' ? ' active' : ''?>">
+        <i class="fa fa-fw fa-book" aria-hidden="true"></i> <?=$this->transEsc('Provided Items')?>
+      </a>
+    <? endif; ?>
+    <? if ($this->ils()->checkCapability('getMyHoldsAndSRR')): ?>
+      <a href="<?=$this->url('default', ['controller' => 'my-research', 'action' => 'holdsandsrr'])?>" class="list-group-item<?=$this->active == 'holdsandsrr' ? ' active' : ''?>">
         <i class="fa fa-fw fa-flag" aria-hidden="true"></i> <?=$this->transEsc('Holds and Recalls')?>
       </a>
     <? endif; ?>
