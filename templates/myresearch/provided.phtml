@@ -68,7 +68,7 @@
               </div>
             <? else: ?>
               <div class="col-xs-1">
-                  &nbsp;
+                  <input class="checkbox-select-item" type="checkbox" name="renewSelectedIDS[]" value="<?=$this->escapeHtmlAttr($ilsDetails['renew_details'])?>" disabled="disabled" />
               </div>
             <? endif; ?>
           <? endif; ?>
@@ -78,8 +78,7 @@
             <?
               // If this is a non-missing Solr record, we should display a link:
               if (is_a($resource, 'VuFind\\RecordDriver\\SolrDefault') && !is_a($resource, 'VuFind\\RecordDriver\\Missing')) {
-                $title = $resource->getTitle();
-                $title = empty($title) ? $this->transEsc('Title not available') : $this->escapeHtml($title);
+                $title = $this->record($resource)->getTitleHtml();
                 echo '<a href="' . $this->recordLink()->getUrl($resource) .
                   '" class="title">' . $title . '</a>';
               } else if (isset($ilsDetails['title']) && !empty($ilsDetails['title'])){
@@ -103,48 +102,8 @@
               <strong><?=$this->transEsc('sort_callnumber')?>:</strong> <?=$this->escapeHtml($ilsDetails['callnumber'])?>
               <br />
             <? endif; ?>
-            
-            <? if (isset($ilsDetails['renew']) && $ilsDetails['renew'] > 0): ?>
-              <strong><?=$this->transEsc('Renewed')?>:</strong> <?=$this->transEsc($ilsDetails['renew'])?>
-              <? if (isset($ilsDetails['renewLimit'])): ?>
-                / <?=$this->transEsc($ilsDetails['renewLimit'])?>
-              <? endif; ?>
-              <br />
-            <? endif; ?>
-            
-            <? if (isset($ilsDetails['reminder']) && $ilsDetails['reminder'] > 0): ?>
-              <strong><?=$this->transEsc('Reminder')?>:</strong> <?=$this->transEsc($ilsDetails['reminder'])?>
-              <br />
-            <? endif; ?>
-            
-            <? if (isset($ilsDetails['queue']) && $ilsDetails['queue'] > 0): ?>
-              <strong><?=$this->transEsc('Holds and Recalls')?>:</strong> <?=$this->transEsc($ilsDetails['queue'])?>
-              <br />
-            <? endif; ?>
 
             <? $showStatus = true; ?>
-
-            <? if (isset($this->renewResult[$ilsDetails['item_id']])): ?>
-              <? $renewDetails = $this->renewResult[$ilsDetails['item_id']]; ?>
-              <? if (isset($renewDetails['success']) && $renewDetails['success']): ?>
-                <? $showStatus = false; ?>
-                <strong><?=$this->transEsc('Due Date')?>: <?=$this->escapeHtml($renewDetails['new_date'])?></strong> <? if (isset($renewDetails['new_time'])): ?><?=$this->escapeHtml($renewDetails['new_time'])?><? endif; ?>
-                <div class="alert alert-success"><?=$this->transEsc('renew_success')?></div><br />
-              <? else: ?>
-                <strong><?=$this->transEsc('Due Date')?>: <?=$this->escapeHtml($ilsDetails['duedate'])?><? if (isset($ilsDetails['dueTime'])): ?></strong><?=$this->escapeHtml($ilsDetails['dueTime'])?><? endif; ?>
-                <div class="alert alert-danger"><?=$this->transEsc('renew_fail')?><? if (isset($renewDetails['sysMessage'])): ?>: <?=$this->escapeHtml($renewDetails['sysMessage'])?><? endif; ?></div><br />
-              <? endif; ?>
-            <? else: ?>
-              <strong><?=$this->transEsc('Due Date')?>: <?=$this->escapeHtml($ilsDetails['duedate'])?><? if (isset($ilsDetails['dueTime'])): ?></strong><?=$this->escapeHtml($ilsDetails['dueTime'])?><? endif; ?>
-              <? if ($showStatus): ?>
-                <? if (isset($ilsDetails['dueStatus']) && $ilsDetails['dueStatus'] == "overdue"): ?>
-                  <div class="alert alert-danger"><?=$this->transEsc("renew_item_overdue")?></div>
-                <? elseif (isset($ilsDetails['dueStatus']) && $ilsDetails['dueStatus'] == "due"): ?>
-                  <div class="alert alert-info"><?=$this->transEsc("renew_item_due")?></div>
-                <? endif; ?>
-                <br />
-              <? endif; ?>
-            <? endif; ?>
             
             <? /* Depending on the ILS driver, the "location" value may be a string or an ID; figure out the best
                value to display... */ ?>
@@ -171,9 +130,6 @@
 
             <? if ($showStatus && isset($ilsDetails['message']) && !empty($ilsDetails['message'])): ?>
               <div class="alert alert-info"><?=$this->transEsc($ilsDetails['message'])?></div>
-            <? endif; ?>
-            <? if (isset($ilsDetails['renewable']) && $ilsDetails['renewable'] && isset($ilsDetails['renew_link'])): ?>
-              <a href="<?=$this->escapeHtmlAttr($ilsDetails['renew_link'])?>"><?=$this->transEsc('renew_item')?></a>
             <? endif; ?>
           </div>
         </div>

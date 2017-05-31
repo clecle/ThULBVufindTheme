@@ -51,7 +51,7 @@
             </div>
           <? else: ?>
             <div class="col-xs-1">
-              &nbsp;
+                <input type="checkbox" name="cancelSelectedIDS[]" value="<?=$this->escapeHtmlAttr($ilsDetails['cancel_details'])?>" disabled="disabled" />
             </div>
           <? endif; ?>
           
@@ -59,8 +59,7 @@
             <?
               // If this is a non-missing Solr record, we should display a link:
               if (is_a($resource, 'VuFind\\RecordDriver\\SolrDefault') && !is_a($resource, 'VuFind\\RecordDriver\\Missing')) {
-                $title = $resource->getTitle();
-                $title = empty($title) ? $this->transEsc('Title not available') : $this->escapeHtml($title);
+                $title = $this->record($resource)->getTitleHtml();
                 echo '<a href="' . $this->recordLink()->getUrl($resource)
                   . '" class="title">' . $title . '</a>';
               } else if (isset($ilsDetails['title']) && !empty($ilsDetails['title'])){
@@ -125,7 +124,7 @@
               <p><span class="label label-success"><?=$this->transEsc("hold_available") ?></span></p>
             <? elseif (isset($ilsDetails['in_transit']) && $ilsDetails['in_transit']): ?>
               <p><span class="label label-success"><?=$this->transEsc('request_in_transit') . (is_string($ilsDetails['in_transit']) ? ': ' . $this->transEsc('institution_' . $ilsDetails['in_transit'], [], $ilsDetails['in_transit']) : '') ?></span></p>
-            <? elseif (isset($ilsDetails['position'])): ?>
+            <? elseif (isset($ilsDetails['position']) && $ilsDetails['position']): ?>
               <p><strong><?=$this->transEsc("hold_queue_position") ?>:</strong> <?=$this->escapeHtml($ilsDetails['position']) ?></p>
             <? endif; ?>
             <? if (isset($ilsDetails['cancel_link'])): ?>
