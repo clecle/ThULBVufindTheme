@@ -62,6 +62,7 @@
           <? endforeach; ?>
         <? endif; ?>
         <?=$this->flashmessages()?>
+        <? /* cleky: leave these infos out ?>
         <div class="hidden-print search-controls row">
           <div class="col-sm-6">
             <? if ($recordTotal > 0): ?>
@@ -84,15 +85,16 @@
             <? endif; ?>
           </div>
 
+          <? moved to sidefacets ?>
           <? if ($recordTotal > 0): ?>
-            <div class="col-sm-6 text-right">
+            < div class="col-sm-6 text-right">
               <?=$this->render('search/controls/limit.phtml')?>
               <?=$this->render('search/controls/sort.phtml')?>
               <?=$this->render('search/controls/view.phtml')?>
             </div>
           <? endif; ?>
         </div>
-        <? /* End Listing Options */ ?>
+        <?  End Listing Options */ ?>
 
         <? if ($recordTotal < 1): ?>
           <p>
@@ -166,6 +168,15 @@
                'searchType'    => $this->params->getSearchType(),
                'hiddenFilters' => $hiddenFilters]); ?>
     </div>
+
+    <? if ($recordTotal > 0): ?>
+      <div class="list-group facet">
+        <?=$this->render('search/controls/limit.phtml')?>
+        <?=$this->render('search/controls/sort.phtml')?>
+        <?=$this->render('search/controls/view.phtml')?>
+      </div>
+    <? endif; ?>
+
     <? foreach ($this->results->getRecommendations('side') as $current): ?>
       <?=$this->recommend($current)?>
     <? endforeach; ?>

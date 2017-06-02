@@ -19,7 +19,7 @@
   <? endif ?>
   <div class="media-body">
     <div class="row short-view">
-      <div class="col-sm-8 middle">
+      <div class="col-sm-10 middle">
         <div>
           <a href="<?=$this->recordLink()->getUrl($this->driver)?>" class="title getFull" data-view="<?=$this->params->getOptions()->getListViewOption() ?>">
             <?=$this->record($this->driver)->getTitleHtml()?>
@@ -103,7 +103,7 @@
         <? endif; ?>
         <?=$this->record($this->driver)->getPreviews()?>
       </div>
-      <div class="col-sm-4 right hidden-print">
+      <div class="col-sm-2 right hidden-print">
         <? /* Display qrcode if appropriate: */ ?>
         <? if ($QRCode = $this->record($this->driver)->getQRCode("results")): ?>
           <?

@@ -8940,6 +8940,18 @@ header .container.navbar {
 #resultlist {
   margin-left: 20px; }
 
+.pad-top10 {
+  padding-top: 10px; }
+
+.pad-right10 {
+  padding-right: 10px; }
+
+.pad-bot10 {
+  padding-bottom: 10px; }
+
+.pad-left10 {
+  padding-left: 10px; }
+
 /* Sidebar rounded corners */
 .narrow-toggle {
   text-align: center; }
@@ -9093,10 +9105,7 @@ img {
 
   h3 {
     font-size: 20px;
-    font-weight: normal; }
-
-  .form-control {
-    max-width: 400px; } }
+    font-weight: normal; } }
 @media (max-width: 767px) {
   h2 {
     font-size: 20px; }
@@ -9182,5 +9191,31 @@ span[class^="services-"], span[class*=" services-"] span::before {
 
 span[class^="services-"], span[class*=" services-"] span:first-of-type::before {
   content: ""; }
+
+.thulb-topline {
+  background-color: #568ebe;
+  height: 5px;
+  margin: 0;
+  padding: 0;
+  width: 100%; }
+
+.footer {
+  background-color: #548ebe;
+  font-size: 90%;
+  margin: 0 auto;
+  max-width: 1200px;
+  min-height: 170px;
+  width: 99%; }
+
+.footer h4 {
+  color: #fff;
+  text-transform: uppercase; }
+
+.footer a {
+  color: #fff; }
+
+.footer ul {
+  margin: 10px 0 10px 25px;
+  list-style-type: none; }
 
 /*# sourceMappingURL=compiled.css.map */
