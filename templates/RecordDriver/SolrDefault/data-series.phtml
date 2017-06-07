@@ -6,10 +6,10 @@
     <? if (!empty($field['name'])): ?>
       <? if ($field['id']) : ?>
         <? $url = $this->recordLink()->related(['type' => 'bib', 'value' => $field['id']]); ?>
-      <? else : ?>
-        <? $url = $this->record($this->driver)->getLink('title', $field['name']); ?>
+        <a href="<?=$url?>"><?=$this->escapeHtml($field['name'])?></a>
+      <? else: ?>
+        <?=$this->escapeHtml($field['name'])?>
       <? endif; ?>
-      <a href="<?=$url?>"><?=$this->escapeHtml($field['name'])?></a>
       <? if (!empty($field['number'])): ?>
         <?=$this->escapeHtml($field['number'])?>
       <? endif; ?>
