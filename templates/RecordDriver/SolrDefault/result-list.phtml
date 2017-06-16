@@ -21,7 +21,7 @@
     <div class="row short-view">
       <div class="col-sm-10 middle">
         <div>
-          <a href="<?=$this->recordLink()->getUrl($this->driver)?>" class="title getFull" data-view="<?=$this->params->getOptions()->getListViewOption() ?>">
+          <a href="<?=$this->recordLink()->getUrl($this->driver)?>" class="title getFull truncate" data-view="<?=$this->params->getOptions()->getListViewOption() ?>">
             <?=$this->record($this->driver)->getTitleHtml()?>
           </a>
         </div>
