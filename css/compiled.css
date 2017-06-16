@@ -9218,4 +9218,7 @@ span[class^="services-"], span[class*=" services-"] span:first-of-type::before {
   margin: 10px 0 10px 25px;
   list-style-type: none; }
 
+.fullrecordview {
+  border: 1px solid #ccc; }
+
 /*# sourceMappingURL=compiled.css.map */
