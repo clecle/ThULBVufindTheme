@@ -8,7 +8,7 @@
     $offlineMode = $this->ils()->getOfflineMode();
     
     /**
-    * do we have Online-Contents only a.k.a. do we need DAIA or not
+    * do we have Online-Contents?
     */
     $online_holdings = $this->driver->getOnlineHoldings();
     try {
@@ -114,7 +114,7 @@
                   <dt><?=$this->transEsc("Call Number")?>:</dt>
                   <dd><strong><?=$callno; ?></strong></dd>
                 <? endif; ?>
-                <? $comments = $this->thulb_holdinghelper()->getHoldingComments($this->driver, $row); ?>
+                <? $comments = $this->driver->getHoldingComments($row[item_id]); ?>
                 <? if (!empty($comments)) : ?>
                   <dt><?=$this->transEsc("Item Notes")?>:</dt>
                   <dd>
