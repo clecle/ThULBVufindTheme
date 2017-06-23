@@ -1,10 +1,12 @@
+$border-radius-base:        0px !default;
+$border-radius-large:       0px !default;
+$border-radius-small:       0px !default;
+
 @import "../../bootstrap3/scss/vendor/bootstrap";
 $fa-font-path: "../../bootstrap3/css/fonts";
 @import "../../bootstrap3/scss/vendor/font-awesome/font-awesome";
 @import "../../bootstrap3/scss/vendor/bootstrap-accessibility/bootstrap-accessibility";
 @import "../../bootstrap3/scss/vendor/a11y";
-
-$fa-font-path: "../../../../../../themes/bootstrap3/css/fonts" !default;
 
 @import "../../bootstrap3/scss/components/advanced-search";
 @import "../../bootstrap3/scss/components/alphabrowse";
@@ -169,10 +171,50 @@ span[class^="services-"], span[class*=" services-"] span:first-of-type::before {
     list-style-type: none;
 }
 
-.fullrecordview {
-    border: 1px solid #ccc;
-}
-
 .checkboxFilter {
     margin-left: 15px;
+}
+
+.breadcrumb {
+    padding: 5px 15px;
+    margin: 10px 0px;
+    background-color: #fff;
+}
+
+.fullrecord_view {
+    border: 1px solid #ccc;
+    padding: 0px 20px 20px 20px;
+    position: relative;
+}
+
+.tab-content {
+    padding: 0px;
+    border: 1px solid #ddd;
+}
+
+.nav-pills {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.nav-tabs {
+    border: none;
+}
+
+.tab-pane {
+    padding: 10px 15px;
+}
+
+.tab-pane > h3 {
+    margin-top: 10px;
+}
+
+.pager li > a {
+    border-radius: 5px;
+    margin: 0px 5px;
+}
+
+.table > td {
+    border-bottom: 1px solid #ddd;
 }
