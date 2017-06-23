@@ -8952,6 +8952,29 @@ header .container.navbar {
 .pad-left10 {
   padding-left: 10px; }
 
+a.truncate {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  line-height: 20px;
+  max-height: 40px;
+  text-align: justify;
+  margin-right: -1em;
+  padding-right: 1em; }
+  a.truncate:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0; }
+  a.truncate:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: white; }
+
 /* Sidebar rounded corners */
 .narrow-toggle {
   text-align: center; }
@@ -9220,5 +9243,8 @@ span[class^="services-"], span[class*=" services-"] span:first-of-type::before {
 
 .fullrecordview {
   border: 1px solid #ccc; }
+
+.checkboxFilter {
+  margin-left: 15px; }
 
 /*# sourceMappingURL=compiled.css.map */

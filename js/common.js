@@ -384,28 +384,42 @@ function setAsyncResultNum() {
 }
 
 function setupTruncations() {
-    var truncatedElements = $('p.truncate');
-    var truncationLength = 300;
+    var truncatedParagraphs = $('p.truncate');
+    var truncatedLinks = $('a.truncate');
+    var pTruncLength = 300;
+    var aTruncLength = 189;
     
-    truncatedElements.each(function() { 
+    // apply truncations
+    truncatedParagraphs.each(function() { 
         var t = $(this).text();
-        if(t.length < truncationLength) {
+        if(t.length < pTruncLength) {
             return;
         }
         
         $(this).html(
-            t.slice(0,truncationLength)+'<a href="#" class="more"> ' + VuFind.translate('truncate_more') + '</a>'+
-            '<span style="display:none;">'+ t.slice(truncationLength,t.length)+' <a href="#" class="less"> ' + VuFind.translate('truncate_less') + '</a></span>'
+            t.slice(0,pTruncLength)+'<a href="#" class="more"> ' + VuFind.translate('truncate_more') + '</a>'+
+            '<span style="display:none;">'+ t.slice(pTruncLength,t.length)+' <a href="#" class="less"> ' + VuFind.translate('truncate_less') + '</a></span>'
         );
     });
     
-    $('a.more', truncatedElements).click(function(event){
+    truncatedLinks.each(function() {
+        var h = $(this).html();
+        
+        $(this).attr('data-toggle', 'tooltip');
+        $(this).attr('title', h);
+        $(this).attr('data-html', true);
+        $(this).attr('data-placement', 'auto');
+        $(this).tooltip();
+    });
+    
+    // setup additional behaviour to show full content
+    $('a.more', truncatedParagraphs).click(function(event){
         event.preventDefault();
         $(this).hide().prev().hide();
         $(this).next().show();        
     });
     
-    $('a.less', truncatedElements).click(function(event){
+    $('a.less', truncatedParagraphs).click(function(event){
         event.preventDefault();
         $(this).parent().hide().prev().show().prev().show();    
     });

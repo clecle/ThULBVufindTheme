@@ -61,7 +61,7 @@
               if (is_a($resource, 'VuFind\\RecordDriver\\SolrDefault') && !is_a($resource, 'VuFind\\RecordDriver\\Missing')) {
                 $title = $this->record($resource)->getTitleHtml();
                 echo '<a href="' . $this->recordLink()->getUrl($resource)
-                  . '" class="title">' . $title . '</a>';
+                  . '" class="title truncate">' . $title . '</a>';
               } else if (isset($ilsDetails['title']) && !empty($ilsDetails['title'])){
                 // If the record is not available in Solr, perhaps the ILS driver sent us a title we can show...
                 echo $this->escapeHtml($ilsDetails['title']);
