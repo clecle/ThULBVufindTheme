@@ -4,8 +4,14 @@
      $preview = $this->record($this->driver)->getPreviews();
      $this->jsTranslations()->addStrings(array('truncate_more' => 'truncate_more', 'truncate_less' => 'truncate_less'));
   ?>
+  
+
+<? /*
+    P I C
+*/ ?>
+
   <? if ($QRCode || $cover || $preview): ?>
-  <div class="col-sm-3 img-col">
+  <div class="col-sm-2 img-col">
     <div class="text-center">
       <? /* Display thumbnail if appropriate: */ ?>
       <? if($cover): ?>
@@ -27,7 +33,12 @@
     <? if ($preview): ?><?=$preview?><? endif; ?>
   </div>
 
-  <div class="col-sm-9 info-col">
+
+<? /*
+    C O R E M E T A D A T A
+*/ ?>
+
+  <div class="col-sm-10 info-col">
   <? else: ?>
   <div class="col-sm-12">
   <? endif; ?>
@@ -52,7 +63,11 @@
       $metadataFields = $formatter->getData($driver, $formatter->getDefaults('full'));
     ?>
     <? if (!empty($metadataFields)): ?>
-      <table class="table table-striped" summary="<?=$this->transEsc('Bibliographic Details')?>">
+      <table class="table table-responsive" summary="<?=$this->transEsc('Bibliographic Details')?>">
+          <colgroup>
+            <col class="col-xs-4 col-sm-3 col-md-2">
+            <col class="col-xs-8 col-sm-9 col-md-10">
+        </colgroup>
         <? foreach ($metadataFields as $key => $value): ?>
           <tr><th><?=$this->transEsc($key)?>:</th><td><?=$value?></td></tr>
         <? endforeach; ?>
