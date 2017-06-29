@@ -114,20 +114,22 @@
                   <dt><?=$this->transEsc("Call Number")?>:</dt>
                   <dd><strong><?=$callno; ?></strong></dd>
                 <? endif; ?>
-                <? $comments = $this->driver->getHoldingComments($row[item_id]); ?>
+                <? $comments = $this->thulb_holdinghelper()->getHoldingComments($row); ?>
                 <? if (!empty($comments)) : ?>
                   <dt><?=$this->transEsc("Item Notes")?>:</dt>
                   <dd>
-                  <? if (count($comments) > 1): ?>
+                  <? if (is_array($comments)): ?>
                     <div class="item-notes">
                       <ul>
                         <? foreach ($comments as $comment): ?>
-                          <li><?=$this->escapeHtml($comment) ?></li>
+                          <? if (!empty($comment)): ?>
+                            <li><?=$this->escapeHtml($comment) ?></li>
+                          <? endif; ?>
                         <? endforeach; ?>
                       </ul>
                     </div>
                   <? else: ?>
-                    <?=$comments[0]; ?>
+                    <?=$comments; ?>
                   <? endif; ?>
                   </dd>
                 <? endif; ?>

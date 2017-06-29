@@ -21,7 +21,7 @@
   <? foreach ($results->getRecommendations('top') as $current): ?>
     <?=$this->recommend($current)?>
   <? endforeach; ?>
-  <div class="clearfix hidden-print">
+  <div class="clearfix hidden-print hidden-xs">
     <div class="pull-left flip">
       <?=$this->transEsc("Showing")?>
       <strong><?=$this->localizedNumber($results->getStartRecord())?></strong> - <strong><?=$this->localizedNumber($results->getEndRecord())?></strong>
@@ -29,7 +29,7 @@
         <?=$this->transEsc('of')?> <strong><?=$this->localizedNumber($recordTotal)?></strong> <?=$this->transEsc('Items')?>
       <? endif; ?>
     </div>
-    <div class="pull-right flip">
+    <div class="pull-right flip" style="max-width:225px;">
       <?=str_replace('/AjaxTab', '/ArticleCollectionList', $this->render('search/controls/limit.phtml', $searchDetails))?>
       <?=str_replace('/AjaxTab', '/ArticleCollectionList', $this->render('search/controls/sort.phtml', $searchDetails))?>
     </div>
