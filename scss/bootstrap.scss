@@ -3,6 +3,7 @@ $border-radius-large:       0px !default;
 $border-radius-small:       0px !default;
 
 @import "../../bootstrap3/scss/vendor/bootstrap";
+
 $fa-font-path: "../../bootstrap3/css/fonts";
 @import "../../bootstrap3/scss/vendor/font-awesome/font-awesome";
 @import "../../bootstrap3/scss/vendor/bootstrap-accessibility/bootstrap-accessibility";
@@ -14,7 +15,7 @@ $fa-font-path: "../../bootstrap3/css/fonts";
 @import "../../bootstrap3/scss/components/icons";
 @import "../../bootstrap3/scss/components/js-tree";
 @import "../../bootstrap3/scss/components/lightbox";
-@import "../../bootstrap3/scss/components/offcanvas";
+/*@import "../../bootstrap3/scss/components/offcanvas";*/
 @import "../../bootstrap3/scss/components/record";
 @import "components/search";
 @import "../../bootstrap3/scss/components/sidebar";
@@ -192,12 +193,6 @@ span[class^="services-"], span[class*=" services-"] span:first-of-type::before {
     border: 1px solid #ddd;
 }
 
-.nav-pills {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-
 .nav-tabs {
     border: none;
 }
@@ -217,4 +212,13 @@ span[class^="services-"], span[class*=" services-"] span:first-of-type::before {
 
 .table > td {
     border-bottom: 1px solid #ddd;
+}
+
+#sort_options_1 {
+    width: 100%;
+}
+
+.btn-thulb {
+  border: none;
+  background-color: transparent;
 }
