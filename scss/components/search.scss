@@ -137,6 +137,7 @@ header .container.navbar { margin-bottom: 0; }
     padding: 0;
     position: relative;
     width: 100%;
+    margin-bottom: 20px;
 }
 #moduletab ul {
     cursor: pointer;
@@ -233,7 +234,7 @@ header .container.navbar { margin-bottom: 0; }
 }
 
 #resultlist {
-    margin-left: 20px;
+    padding-left: 20px;
 }
 
 .pad-top10 {

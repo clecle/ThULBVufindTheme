@@ -50,7 +50,7 @@
         <? elseif ($handlerCount == 1): ?>
           <input type="hidden" name="type" value="<?=$this->escapeHtmlAttr($handlers[0]['value'])?>" />
         <? endif; ?>
-        <button class="btn btn-primary input-lg"type="submit"><i class="fa fa-search" aria-hidden="true"></i> <?=$this->transEsc("Find")?></button>
+        <button title="<?=$this->transEsc("Find")?>" class="btn btn-primary input-lg"type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
       </div>
     </div>
   </form>
