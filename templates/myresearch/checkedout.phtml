@@ -114,11 +114,6 @@
               <strong><?=$this->transEsc('Reminder')?>:</strong> <?=$this->transEsc($ilsDetails['reminder'])?>
               <br />
             <? endif; ?>
-            
-            <? if (isset($ilsDetails['queue']) && $ilsDetails['queue'] > 0): ?>
-              <strong><?=$this->transEsc('Holds and Recalls')?>:</strong> <?=$this->transEsc($ilsDetails['queue'])?>
-              <br />
-            <? endif; ?>
 
             <? $showStatus = true; ?>
 
@@ -169,6 +164,11 @@
               <? else: ?>
                 <span class="label label-default"><?=$this->transEsc('ordered') ?></span>
               <? endif; ?>
+              <br />
+            <? endif; ?>
+            
+            <? if (isset($ilsDetails['queue']) && $ilsDetails['queue'] > 0): ?>
+            <span class="text-danger"><?=$this->transEsc('No renewal bacause of reservations')?></span>
               <br />
             <? endif; ?>
 
