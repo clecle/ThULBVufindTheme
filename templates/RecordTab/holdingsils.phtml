@@ -110,7 +110,7 @@
             <td>
               <dl class="dl-horizontal">
                 <? $callno = $this->thulb_holdinghelper()->getCallnumber($row); ?>
-                <? if ($callno != "Unknown" ): ?>
+                <? if ($callno): ?>
                   <dt><?=$this->transEsc("Call Number")?>:</dt>
                   <dd><strong><?=$callno; ?></strong></dd>
                 <? endif; ?>
