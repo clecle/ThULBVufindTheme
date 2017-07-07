@@ -446,7 +446,7 @@ $(document).ready(function commonDocReady() {
   // Checkbox select all
   $('.checkbox-select-all').change(function selectAllCheckboxes() {
     var $form = $(this).closest('form');
-    $form.find('.checkbox-select-item').prop('checked', this.checked);
+    $form.find('.checkbox-select-item').not(':disabled').prop('checked', this.checked);
     $('[form="' + $form.attr('id') + '"]').prop('checked', this.checked);
   });
   $('.checkbox-select-item').change(function selectAllDisable() {
