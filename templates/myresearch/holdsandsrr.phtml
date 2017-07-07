@@ -78,6 +78,11 @@
               <strong><?=$this->transEsc('Volume')?>:</strong> <?=$this->escapeHtml($ilsDetails['volume'])?>
               <br />
             <? endif; ?>
+            
+            <? if (isset($ilsDetails['callnumber'])) : ?>
+              <strong><?=$this->transEsc('sort_callnumber')?>:</strong> <?=$this->escapeHtml($ilsDetails['callnumber'])?>
+              <br />
+            <? endif; ?>
 
             <? if (!empty($ilsDetails['requestGroup'])): ?>
               <strong><?=$this->transEsc('hold_requested_group') ?>:</strong> <?=$this->transEsc('request_group_' . $ilsDetails['requestGroup'], null, $ilsDetails['requestGroup'])?>
