@@ -16,7 +16,6 @@ header .container.navbar { margin-bottom: 0; }
   padding-top: 5px;
   .checkbox {
     float: left;
-    padding-right: .5rem;
   }
   .media,
   .media-body { overflow: visible; }
@@ -233,10 +232,6 @@ header .container.navbar { margin-bottom: 0; }
   position:fixed;
 }
 
-#resultlist {
-    padding-left: 20px;
-}
-
 .pad-top10 {
     padding-top: 10px;
 }
@@ -277,6 +272,11 @@ a.truncate {
         width: 1em;
         height: 1em;
         margin-top: 0.2em;
-        background: white;
+        background: inherit;
+        background-color: inherit;
     }
+}
+
+.pagination {
+    margin: 5px 0;
 }

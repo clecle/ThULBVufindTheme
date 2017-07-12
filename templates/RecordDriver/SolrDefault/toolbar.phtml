@@ -10,7 +10,7 @@
 ?>
 <ul class="nav nav-pills hidden-print pull-right" style="padding-top: 15px;">
   <? if (count($this->driver->getCitationFormats()) > 0): ?>
-    <li><a title="<?=$this->transEsc('Cite this')?>" class="cite-record" data-lightbox href="<?=$this->recordLink()->getActionUrl($this->driver, 'Cite')?>" rel="nofollow"><i class="fa fa-asterisk" aria-hidden="true"></i></a></li>
+    <li><a title="<?=$this->transEsc('Cite this')?>" class="cite-record" data-lightbox href="<?=$this->recordLink()->getActionUrl($this->driver, 'Cite')?>" rel="nofollow"><i class="fa fa-quote-left" aria-hidden="true"></i></a></li>
   <? endif; ?>
   <? if ($this->accountCapabilities()->getSmsSetting() !== 'disabled'): ?>
     <li><a title="<?=$this->transEsc('Text this')?>" class="sms-record" data-lightbox href="<?=$this->recordLink()->getActionUrl($this->driver, 'SMS')?>" rel="nofollow"><i class="fa fa-mobile" aria-hidden="true"></i></a></li>
@@ -20,7 +20,7 @@
   <? $exportFormats = $this->export()->getFormatsForRecord($this->driver); ?>
   <? if(count($exportFormats) > 0): ?>
     <li class="dropdown">
-      <a title="<?=$this->transEsc('Export Record') ?>" class="export-toggle dropdown-toggle" data-toggle="dropdown" href="<?=$this->recordLink()->getActionUrl($this->driver, 'Export')?>" rel="nofollow"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+      <a title="<?=$this->transEsc('Export Record') ?>" class="export-toggle dropdown-toggle" data-toggle="dropdown" href="<?=$this->recordLink()->getActionUrl($this->driver, 'Export')?>" rel="nofollow"><i class="fa fa-share" aria-hidden="true"></i></a>
       <ul class="dropdown-menu" role="menu">
         <? foreach ($exportFormats as $exportFormat): ?>
           <li><a <? if ($this->export()->needsRedirect($exportFormat)): ?>target="<?=$this->escapeHtmlAttr($exportFormat)?>Main" <? endif; ?>href="<?=$this->recordLink()->getActionUrl($this->driver, 'Export')?>?style=<?=$this->escapeHtmlAttr($exportFormat)?>" rel="nofollow"><?=$this->transEsc($this->export()->getLabelForFormat($exportFormat))?></a></li>
@@ -29,24 +29,18 @@
     </li>
   <? endif; ?>
 
-  <? if ($this->userlist()->getMode() !== 'disabled'): ?>
-    <li><a title="<?=$this->transEsc('Add to favorites')?>" class="save-record" data-lightbox href="<?=$this->recordLink()->getActionUrl($this->driver, 'Save')?>" rel="nofollow"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-  <? endif; ?>
-  <? if (!empty($addThis)): ?>
-    <li><a title="<?=$this->transEsc('Bookmark')?>" class="addThis addthis_button" href="https://www.addthis.com/bookmark.php?v=250&amp;pub=<?=urlencode($addThis)?>"><i class="fa fa-bookmark" aria-hidden="true"></i></a></li>
-  <? endif; ?>
   <? if ($cart->isActive()): ?>
     <li class="bookbag-menu">
       <input class="cartId" type="hidden" name="ids[]" value="<?=$this->escapeHtmlAttr($cartId)?>" />
-      <a title="<?=$this->transEsc('Add to Book Bag') ?>" class="cart-add hidden<? if(!$cart->contains($cartId)): ?> correct<? endif ?>" href="#"><i class="fa fa-plus" aria-hidden="true"></i></a>
-      <a title="<?=$this->transEsc('Remove from Book Bag') ?>" class="cart-remove hidden<? if($cart->contains($cartId)): ?> correct<? endif ?>"href="#"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
+      <a title="<?=$this->transEsc('Add to Book Bag') ?>" class="cart-add hidden<? if(!$cart->contains($cartId)): ?> correct<? endif ?>"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+      <a title="<?=$this->transEsc('Remove from Book Bag') ?>" class="cart-remove hidden<? if($cart->contains($cartId)): ?> correct<? endif ?>"><i class="fa fa-minus-square" aria-hidden="true"></i></a>
       <noscript>
         <form method="post" name="addForm" action="<?=$this->url('cart-processor')?>">
           <input type="hidden" name="ids[]" value="<?=$this->escapeHtmlAttr($cartId)?>" />
           <? if ($cart->contains($cartId)): ?>
-            <input class="btn btn-default" type="submit" name="delete" value="<?=$this->transEsc('Remove from Book Bag')?>"/>
+            <input class="btn btn-thulb" type="submit" name="delete" value="<?=$this->transEsc('Remove from Book Bag')?>"><i class="fa fa-minus-square" aria-hidden="true"></i></input>
           <? else: ?>
-            <input class="btn btn-default" type="submit" name="add" value="<?=$this->transEsc('Add to Book Bag')?>"/>
+            <input class="btn btn-thulb" type="submit" name="add" value="<?=$this->transEsc('Add to Book Bag')?>"><i class="fa fa-plus-square" aria-hidden="true"></i></input>
           <? endif; ?>
         </form>
       </noscript>

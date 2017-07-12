@@ -11,6 +11,12 @@
     <? $thumbnail = ob_get_contents(); ?>
   <? ob_end_clean(); ?>
 <? endif; ?>
+
+<?
+  $cart = $this->cart();
+  $cartId = $this->driver->getSourceIdentifier() . '|' . $this->driver->getUniqueId();
+?>
+
 <input type="hidden" value="<?=$this->escapeHtmlAttr($this->driver->getUniqueID())?>" class="hiddenId" />
 <input type="hidden" value="<?=$this->escapeHtmlAttr($this->driver->getSourceIdentifier())?>" class="hiddenSource" />
 
@@ -102,13 +108,20 @@
           </span>
         <? endif; ?>
 
-        <? if ($this->userlist()->getMode() !== 'disabled'): ?>
-          <? /* Add to favorites */ ?>
-          <a title="<?=$this->transEsc('Add to favorites')?>" href="<?=$this->recordLink()->getActionUrl($this->driver, 'Save')?>" data-lightbox class="save-record" data-id="<?=$this->escapeHtmlAttr($this->driver->getUniqueId()) ?>"><i class="fa fa-fw fa-star" aria-hidden="true"></i></a><br/>
-          <? /* Saved lists */ ?>
-          <div class="savedLists alert alert-info hidden">
-            <strong><?=$this->transEsc("Saved in")?>:</strong>
-          </div>
+        <? if ($cart->isActive()): ?>
+          <input class="cartId" type="hidden" name="ids[]" value="<?=$this->escapeHtmlAttr($cartId)?>" />
+          <a title="<?=$this->transEsc('Add to Book Bag') ?>" class="cart-add hidden<? if(!$cart->contains($cartId)): ?> correct<? endif ?>"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+          <a title="<?=$this->transEsc('Remove from Book Bag') ?>" class="cart-remove hidden<? if($cart->contains($cartId)): ?> correct<? endif ?>"><i class="fa fa-minus-square" aria-hidden="true"></i></a>
+          <noscript>
+            <form method="post" name="addForm" action="<?=$this->url('cart-processor')?>">
+              <input type="hidden" name="ids[]" value="<?=$this->escapeHtmlAttr($cartId)?>" />
+              <? if ($cart->contains($cartId)): ?>
+                <input class="btn btn-thulb" type="submit" name="delete" value="<?=$this->transEsc('Remove from Book Bag')?>"><i class="fa fa-minus-square" aria-hidden="true"></i></input>
+              <? else: ?>
+                <input class="btn btn-thulb" type="submit" name="add" value="<?=$this->transEsc('Add to Book Bag')?>"><i class="fa fa-plus-square" aria-hidden="true"></i></input>
+              <? endif; ?>
+            </form>
+          </noscript>
         <? endif; ?>
 
         <? /* Hierarchy tree link */ ?>
