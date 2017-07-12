@@ -8382,156 +8382,6 @@ input::-webkit-input-placeholder, input:-ms-input-placeholder, input::-ms-input-
       display: block;
       color: darkgray; }
 
-.fa-grid:before {
-  content: "\f00a"; }
-
-.fa-visual:before {
-  content: "\f008"; }
-
-.fa-x:before {
-  content: "\f0f6"; }
-
-.fa-atlas:before {
-  content: "\f14e"; }
-
-.fa-book:before {
-  content: "\f02d"; }
-
-.fa-braille:before {
-  content: "\f0a6"; }
-
-.fa-cdrom:before {
-  content: "\f109"; }
-
-.fa-chart:before {
-  content: "\f012"; }
-
-.fa-chipcartridge:before {
-  content: "\f109"; }
-
-.fa-collage:before {
-  content: "\f03e"; }
-
-.fa-disccartridge:before {
-  content: "\f109"; }
-
-.fa-drawing:before {
-  content: "\f03e"; }
-
-.fa-ebook:before {
-  content: "\f0f6"; }
-
-.fa-electronic:before {
-  content: "\f1c6"; }
-
-.fa-filmstrip:before {
-  content: "\f008"; }
-
-.fa-flashcard:before {
-  content: "\f0e7"; }
-
-.fa-floppydisk:before {
-  content: "\f0c7"; }
-
-.fa-globe:before {
-  content: "\f0ac"; }
-
-.fa-journal:before {
-  content: "\f0f6"; }
-
-.fa-kit:before {
-  content: "\f0b1"; }
-
-.fa-manuscript:before {
-  content: "\f0f6"; }
-
-.fa-map:before {
-  content: "\f14e"; }
-
-.fa-microfilm:before {
-  content: "\f008"; }
-
-.fa-motionpicture:before {
-  content: "\f03d"; }
-
-.fa-musicalscore:before {
-  content: "\f001"; }
-
-.fa-musicrecording:before {
-  content: "\f001"; }
-
-.fa-newspaper:before {
-  content: "\f0f6"; }
-
-.fa-online:before {
-  content: "\f109"; }
-
-.fa-painting:before {
-  content: "\f03e"; }
-
-.fa-photo:before {
-  content: "\f03e"; }
-
-.fa-photonegative:before {
-  content: "\f03e"; }
-
-.fa-physicalobject:before {
-  content: "\f187"; }
-
-.fa-print:before {
-  content: "\f03e"; }
-
-.fa-sensorimage:before {
-  content: "\f03e"; }
-
-.fa-serial:before {
-  content: "\f0f6"; }
-
-.fa-slide:before {
-  content: "\f008"; }
-
-.fa-software:before {
-  content: "\f109"; }
-
-.fa-soundcassette:before {
-  content: "\f025"; }
-
-.fa-sounddisc:before {
-  content: "\f109"; }
-
-.fa-soundrecording:before {
-  content: "\f025"; }
-
-.fa-tapecartridge:before {
-  content: "\f109"; }
-
-.fa-tapecassette:before {
-  content: "\f025"; }
-
-.fa-tapereel:before {
-  content: "\f008"; }
-
-.fa-transparency:before {
-  content: "\f008"; }
-
-.fa-unknown:before {
-  content: "\f128"; }
-
-.fa-video:before {
-  content: "\f03d"; }
-
-.fa-videocartridge:before {
-  content: "\f03d"; }
-
-.fa-videocassette:before {
-  content: "\f03d"; }
-
-.fa-videodisc:before {
-  content: "\f109"; }
-
-.fa-videoreel:before {
-  content: "\f03d"; }
-
 .hierarchy-tree {
   /* jsTree arrows */ }
   .hierarchy-tree .jstree-ocl:before {
@@ -8762,8 +8612,7 @@ header .container.navbar {
 .result {
   padding-top: 5px; }
   .result .checkbox {
-    float: left;
-    padding-right: .5rem; }
+    float: left; }
   .result .media,
   .result .media-body {
     overflow: visible; }
@@ -8983,9 +8832,6 @@ header .container.navbar {
   display: none;
   position: fixed; }
 
-#resultlist {
-  padding-left: 20px; }
-
 .pad-top10 {
   padding-top: 10px; }
 
@@ -9019,7 +8865,10 @@ a.truncate {
     width: 1em;
     height: 1em;
     margin-top: 0.2em;
-    background: white; }
+    background-color: white; }
+
+.pagination {
+  margin: 5px 0; }
 
 /* Sidebar rounded corners */
 .narrow-toggle {
