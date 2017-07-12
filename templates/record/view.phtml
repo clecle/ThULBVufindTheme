@@ -27,12 +27,12 @@ $this->layout()->ignoreHiddenFilterMemory = true;
 
 <div class="fullrecord_view">
   <div class="row">
-    <div class="col-sm-6 cols-xs-12">
+    <div class="col-sm-7 cols-xs-12">
     <? /*
         S C R O L L D A T A
     */ ?>
     <? if (isset($this->scrollData) && ($this->scrollData['previousRecord'] || $this->scrollData['nextRecord'])): ?>
-    <ul class="pager hidden-print pull-right" style="margin-bottom:0px;">
+      <ul class="pager hidden-print pull-right" style="margin-bottom:0px;">
 
         <? if ($this->scrollData['previousRecord']): ?>
         <? if ($this->scrollData['firstRecord']): ?>
@@ -65,32 +65,30 @@ $this->layout()->ignoreHiddenFilterMemory = true;
         <li class="disabled"><a href="#"><?= $this->transEsc('Last') ?> &raquo;</a></li>
         <? endif; ?>
         <? endif; ?>
-    </ul>
+      </ul>
     <? endif; ?>
+    </div>
+    <div class="col-sm-5 col-xs-12">
+      <? /*
+          T O O L B A R
+      */ ?>
+      <?= $this->record($this->driver)->getToolbar() ?>
+    </div>
   </div>
-  <div class="col-sm-6 col-xs-12">
-    <? /*
-        T O O L B A R
-    */ ?>
-    <?= $this->record($this->driver)->getToolbar() ?>
-  </div>
-</div>
 
-
-<? /*
-    F U L L R E C O R D V I E W
-*/ ?>
-<div class="record source<?= $this->escapeHtmlAttr($this->driver->getSourceIdentifier()) ?>">
+  <? /*
+      F U L L R E C O R D V I E W
+  */ ?>
+  <div class="record source<?= $this->escapeHtmlAttr($this->driver->getSourceIdentifier()) ?>">
     <input type="hidden" value="<?= $this->escapeHtmlAttr($this->driver->getUniqueId()) ?>" class="hiddenId" />
     <input type="hidden" value="<?= $this->escapeHtmlAttr($this->driver->getSourceIdentifier()) ?>" class="hiddenSource" />
     <?= $this->flashmessages() ?>
     <?= $this->record($this->driver)->getCoreMetadata() ?>
 
-    
-<? /*
-    T A B S
-*/ ?>
 
+  <? /*
+      T A B S
+  */ ?>
     <? if (count($this->tabs) > 0): ?>
     <a name="tabnav"></a>
     <div class="record-tabs">
@@ -127,6 +125,6 @@ $this->layout()->ignoreHiddenFilterMemory = true;
     <? endif; ?>
 
     <?= $this->driver->supportsCoinsOpenURL() ? '<span class="Z3988" title="' . $this->escapeHtmlAttr($this->driver->getCoinsOpenURL()) . '"></span>' : '' ?>
-</div>
+  </div>
 <?= $this->inlineScript(\Zend\View\Helper\HeadScript::SCRIPT, '$(document).ready(recordDocReady);', 'SET'); ?>
 </div>

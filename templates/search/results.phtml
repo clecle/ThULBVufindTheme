@@ -51,7 +51,7 @@
 <img src="/vufind/themes/thulb/images/Ajax-loader.gif"
      id="img-load" />
 <div id="searchcontent" class="row">
-  <div id="overlay">
+  <div id="overlay" class="col-xs-12">
       <p>&nbsp;</p>
   </div>
   <div class="<?=$this->layoutClass('mainbody')?>">
@@ -85,12 +85,13 @@
           <? endforeach; ?>
         <? else: ?>
           <form class="form-inline" method="post" name="bulkActionForm" action="<?=$this->url('cart-searchresultsbulk')?>" data-lightbox data-lightbox-onsubmit="bulkFormHandler">
-            <?=$this->paginationControl($this->results->getPaginator(), 'Sliding', 'search/pagination.phtml', ['results' => $this->results, 'options' => isset($this->paginationOptions) ? $this->paginationOptions : []])?>
-
-            <div class="row">
-              <?=$this->context($this)->renderInContext('search/bulk-action-buttons.phtml', ['idPrefix' => ''])?>
-
-              <div class="searchtools hidden-print col-sm-6 col-xs-12">
+            <div class="row hidden-print">
+              <div class="col-xs-12">
+                <div class="pull-right">
+                <?=$this->paginationControl($this->results->getPaginator(), 'Sliding', 'search/pagination.phtml', ['results' => $this->results, 'options' => isset($this->paginationOptions) ? $this->paginationOptions : []])?>
+                </div>
+              </div>
+              <div class="searchtools col-xs-12">
                 <!--strong><?=$this->transEsc('Search Tools')?>:</strong-->
                 <ul class="nav nav-pills pull-right">
                   <li><a title="<?=$this->transEsc('Get RSS Feed')?>" href="<?=$this->results->getUrlQuery()->setViewParam('rss')?>"><i class="fa fa-rss" aria-hidden="true"></i></a>
@@ -116,10 +117,13 @@
 
             <?=$this->render('search/list-' . $this->params->getView() . '.phtml')?>
 
-            <div class="row">
-              <?=$this->context($this)->renderInContext('search/bulk-action-buttons.phtml', ['idPrefix' => ''])?>
-
-              <div class="searchtools hidden-print col-sm-6 col-xs-12">
+            <div class="row hidden-print">
+              <div class="col-xs-12">
+                <div class="pull-right">
+                <?=$this->paginationControl($this->results->getPaginator(), 'Sliding', 'search/pagination.phtml', ['results' => $this->results, 'options' => isset($this->paginationOptions) ? $this->paginationOptions : []])?>
+                </div>
+              </div>
+              <div class="searchtools col-xs-12">
                 <!--strong><?=$this->transEsc('Search Tools')?>:</strong-->
                 <ul class="nav nav-pills pull-right">
                   <li><a title="<?=$this->transEsc('Get RSS Feed')?>" href="<?=$this->results->getUrlQuery()->setViewParam('rss')?>"><i class="fa fa-rss" aria-hidden="true"></i></a>
@@ -142,8 +146,6 @@
                 </ul>
               </div>
             </div>
-
-            <?=$this->paginationControl($this->results->getPaginator(), 'Sliding', 'search/pagination.phtml', ['results' => $this->results, 'options' => isset($this->paginationOptions) ? $this->paginationOptions : []])?>
           </form>
         <? endif; ?>
     </div>
