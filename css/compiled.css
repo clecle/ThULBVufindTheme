@@ -8844,6 +8844,52 @@ header .container.navbar {
 .pad-left10 {
   padding-left: 10px; }
 
+.odd a.truncate {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  line-height: 20px;
+  max-height: 40px;
+  text-align: justify;
+  margin-right: -1em;
+  padding-right: 1em; }
+  .odd a.truncate:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0; }
+  .odd a.truncate:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background-color: white; }
+
+.even a.truncate {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  line-height: 20px;
+  max-height: 40px;
+  text-align: justify;
+  margin-right: -1em;
+  padding-right: 1em; }
+  .even a.truncate:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0; }
+  .even a.truncate:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background-color: #f9f9f9; }
+
 a.truncate {
   display: block;
   overflow: hidden;

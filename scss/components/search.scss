@@ -2,6 +2,32 @@ $thumbnail-width-small: 60px !default;
 $thumbnail-width-medium: 100px !default;
 $thumbnail-width-large: 160px !default;
 
+@mixin truncate($bgColor : white) {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    line-height: $line-height-computed;
+    max-height: $line-height-computed * 2; 
+    text-align: justify;
+    margin-right: -1em;
+    padding-right: 1em;
+    &:before {
+        content: '...';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+    &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 1em;
+        height: 1em;
+        margin-top: 0.2em;
+        background-color: $bgColor;
+    }
+}
+
 .searchForm {
   margin: 0;
   padding: 0;
@@ -250,30 +276,16 @@ header .container.navbar { margin-bottom: 0; }
      @extend .alert-info;
 }
 
+.odd a.truncate {
+    @include truncate(white);
+}
+
+.even a.truncate {
+    @include truncate(#f9f9f9);
+}
+
 a.truncate {
-    display: block;
-    overflow: hidden;
-    position: relative;
-    line-height: $line-height-computed;
-    max-height: $line-height-computed * 2; 
-    text-align: justify;
-    margin-right: -1em;
-    padding-right: 1em;
-    &:before {
-        content: '...';
-        position: absolute;
-        right: 0;
-        bottom: 0;
-    }
-    &:after {
-        content: '';
-        position: absolute;
-        right: 0;
-        width: 1em;
-        height: 1em;
-        margin-top: 0.2em;
-        background-color: white;
-    }
+    @include truncate;
 }
 
 .pagination {
