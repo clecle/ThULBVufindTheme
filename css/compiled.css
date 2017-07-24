@@ -8844,7 +8844,7 @@ header .container.navbar {
 .pad-left10 {
   padding-left: 10px; }
 
-.odd a.truncate {
+.table-striped > tbody > tr:nth-of-type(even) a.truncate {
   display: block;
   overflow: hidden;
   position: relative;
@@ -8853,12 +8853,12 @@ header .container.navbar {
   text-align: justify;
   margin-right: -1em;
   padding-right: 1em; }
-  .odd a.truncate:before {
+  .table-striped > tbody > tr:nth-of-type(even) a.truncate:before {
     content: '...';
     position: absolute;
     right: 0;
     bottom: 0; }
-  .odd a.truncate:after {
+  .table-striped > tbody > tr:nth-of-type(even) a.truncate:after {
     content: '';
     position: absolute;
     right: 0;
@@ -8867,7 +8867,7 @@ header .container.navbar {
     margin-top: 0.2em;
     background-color: white; }
 
-.even a.truncate {
+.table-striped > tbody > tr:nth-of-type(odd) a.truncate {
   display: block;
   overflow: hidden;
   position: relative;
@@ -8876,12 +8876,12 @@ header .container.navbar {
   text-align: justify;
   margin-right: -1em;
   padding-right: 1em; }
-  .even a.truncate:before {
+  .table-striped > tbody > tr:nth-of-type(odd) a.truncate:before {
     content: '...';
     position: absolute;
     right: 0;
     bottom: 0; }
-  .even a.truncate:after {
+  .table-striped > tbody > tr:nth-of-type(odd) a.truncate:after {
     content: '';
     position: absolute;
     right: 0;

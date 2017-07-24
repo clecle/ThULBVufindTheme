@@ -276,11 +276,11 @@ header .container.navbar { margin-bottom: 0; }
      @extend .alert-info;
 }
 
-.odd a.truncate {
+.table-striped>tbody>tr:nth-of-type(even) a.truncate {
     @include truncate(white);
 }
 
-.even a.truncate {
+.table-striped>tbody>tr:nth-of-type(odd) a.truncate {
     @include truncate(#f9f9f9);
 }
 

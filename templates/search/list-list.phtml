@@ -5,7 +5,7 @@
   <? $i = $this->indexStart; foreach ($this->results->getResults() as $current):
     $recordNumber = $this->results->getStartRecord()+$i-$this->indexStart; ?>
     <tr><td>
-    <div id="result<?=$i++ ?>" class="result<?=$current->supportsAjaxStatus()?' ajaxItem':''?> <?=($i%2) ? 'even' : 'odd'?>">
+    <div id="result<?=$i++ ?>" class="result<?=$current->supportsAjaxStatus()?' ajaxItem':''?>">
       <div class="checkbox hidden-print">
         <?=$recordNumber ?>
       </div>
