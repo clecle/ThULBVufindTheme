@@ -53,7 +53,6 @@
         <button title="<?=$this->transEsc("Find")?>" class="btn btn-primary input-lg"type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
       </div>
     </div>
-  </form>
     <? if (false/*$advSearch*/): ?>
       <a href="<?=$this->url($advSearch) . ((isset($this->searchId) && $this->searchId) ? '?edit=' . $this->escapeHtmlAttr($this->searchId) : $hiddenFilterParams) ?>" class="btn btn-link" rel="nofollow"><?=$this->transEsc("Advanced")?></a>
     <? endif; ?>
@@ -116,4 +115,5 @@
         echo '<input type="hidden" name="sort" value="' . $this->escapeHtmlAttr($lastSort) . '" />';
       }
     ?>
+  </form>
 <? endif; ?>
