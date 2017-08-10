@@ -40,7 +40,7 @@
               <? if ($account->getSessionInitiator($this->serverUrl($this->url('myresearch-home')))): ?>
                 <a href="<?=$this->url('myresearch-userlogin')?>" title="<?=$this->transEsc("Institutional Login")?>"><?=$this->transEsc('Useraccount')?> <i class="fa fa-user" aria-hidden="true"></i></a>
               <? else: ?>
-                <a href="<?=$this->url('myresearch-userlogin')?>" title="<?=$this->transEsc("Userlogin")?>" data-lightbox><?=$this->transEsc('Useraccount')?> <i class="fa fa-user" aria-hidden="true"></i></a>
+                <a href="<?=$this->url('myresearch-userlogin')?>" title="<?=$this->transEsc("Userlogin")?>" <i class="fa fa-user" aria-hidden="true"></i></a>
               <? endif; ?>
             </li>
           <? endif; ?>
