@@ -170,7 +170,7 @@
             <? if (isset($ilsDetails['queue']) && $ilsDetails['queue'] > 0): ?>
               <span class="text-danger"><?=$this->transEsc('No renewal bacause of reservations')?></span>
               <br />
-            <? else if (isset($ilsDetails['renew']) && $ilsDetails['renew'] > 2): ?>
+            <? elseif (isset($ilsDetails['renew']) && $ilsDetails['renew'] > 2): ?>
               <span class="text-danger"><?=$this->transEsc('Maximum number of renewals reached')?></span>
               <br />
             <? endif; ?>
