@@ -106,11 +106,6 @@
                 <? $pickupDisplay = $ilsDetails['location']; ?>
               <? endif; ?>
             <? endif; ?>
-            <? if (!empty($pickupDisplay)): ?>
-              <strong><?=$this->transEsc('pick_up_location') ?>:</strong>
-              <?=$pickupTranslate ? $this->transEsc('location_' . $pickupDisplay, null, $pickupDisplay) : $this->escapeHtml($pickupDisplay)?>
-              <br />
-            <? endif; ?>
 
             <? if (!empty($ilsDetails['create'])): ?>
               <strong><?=$this->transEsc('Created') ?>:</strong> <?=$this->escapeHtml($ilsDetails['create']) ?>
