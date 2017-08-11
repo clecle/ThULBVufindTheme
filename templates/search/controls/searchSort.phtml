@@ -3,6 +3,6 @@
     <strong><?=$this->transEsc('Sort')?></strong>
   </div>
   <div class="list-group-item">
-    <?=$this->render('search/controls/sort.phtml')?>
+    <?=$this->context($this)->renderInContext('search/controls/sort.phtml', ['useHiddenFilters' => true])?>
   </div>
 </div>

@@ -1,6 +1,8 @@
 <? $list = $this->params->getSortList(); if (!empty($list)): ?>
   <form class="form-inline" action="<?=$this->currentPath()?>" method="get" name="sort">
-    <?=$this->results->getUrlQuery()->asHiddenFields(array('sort' => '/.*/'));?>
+    <? if ($useHiddenFilters): ?>
+      <?=$this->results->getUrlQuery()->asHiddenFields(array('sort' => '/.*/'));?>
+    <? endif; ?>
 
     <select id="sort_options_1" name="sort" class="jumpMenu form-control">
       <? foreach ($list as $sortType => $sortData): ?>
