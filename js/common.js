@@ -387,7 +387,7 @@ function setupTruncations() {
     var truncatedParagraphs = $('p.truncate');
     var truncatedLinks = $('a.truncate');
     var pTruncLength = 300;
-    var aTruncLength = 150;
+    var aTruncRatio = 0.25;
     
     // apply truncations
     truncatedParagraphs.each(function() { 
@@ -403,11 +403,12 @@ function setupTruncations() {
     });
     
     truncatedLinks.each(function() {
-        var h = $(this).html();
-        if(h.length < aTruncLength) {
-            return;
+        var t = $(this).text();
+        var visibleWidth = $(this).parent().innerWidth();
+        if(t.length > (aTruncRatio * visibleWidth)) {
+            var h = $(this).html();
+            $(this).tooltip({title: h, delay: {show: 500, hide: 100}, html: true, placement: 'auto'});
         }
-        $(this).tooltip({title: h, delay: {show: 500, hide: 100}, html: true, placement: 'auto'});
     });
     
     // setup additional behaviour to show full content
