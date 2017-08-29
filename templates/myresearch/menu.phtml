@@ -50,7 +50,7 @@
   <div class="list-group">
   <? if ($this->accountCapabilities()->getSavedSearchSetting() === 'enabled'): ?>
     <a href="<?=$this->url('search-history')?>?require_login" class="list-group-item<?=$this->active == 'history' ? ' active' : ''?>">
-      <i class="fa fa-fw fa-search" aria-hidden="true"></i> <?=$this->transEsc('history_saved_searches')?>
+      <i class="fa fa-fw fa-search" aria-hidden="true"></i> <?=$this->transEsc('history_saved_searches_tab')?>
     </a>
   <? endif; ?>
     <a href="<?=$this->url('myresearch-favorites')?>" class="list-group-item<?=$this->active == 'favorites' ? ' active' : ''?>">
