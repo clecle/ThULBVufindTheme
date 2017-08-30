@@ -193,6 +193,7 @@ header .container.navbar { margin-bottom: 0; }
 #moduletab .show a {
     color: #fff;
 }
+
 #moduletab li.show::after {
     border-color: transparent transparent transparent #548ebe;
     border-style: solid;
@@ -204,6 +205,15 @@ header .container.navbar { margin-bottom: 0; }
     top: 0;
     z-index: 10;
 }
+@media (max-width: 767px) {
+  #moduletab li.show::after {
+    border-color: none;
+    border-style: solid;
+    border-width: 0px;
+    content: "";
+  }
+}
+
 #moduletab li:hover::after {
     border-color: transparent transparent transparent #70bfff;
 }
