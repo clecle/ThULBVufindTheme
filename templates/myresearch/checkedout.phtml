@@ -159,11 +159,6 @@
             <? if (!empty($pickupDisplay)): ?>
               <strong><?=$this->transEsc('pick_up_location') ?>:</strong>
               <?=$pickupTranslate ? $this->transEsc('location_' . $pickupDisplay, null, $pickupDisplay) : $this->escapeHtml($pickupDisplay)?>
-              <? if (isset($ilsDetails['available']) && $ilsDetails['available']): ?>
-                <span class="label label-success"><?=$this->transEsc('available for pickup') ?></span>
-              <? else: ?>
-                <span class="label label-default"><?=$this->transEsc('ordered') ?></span>
-              <? endif; ?>
               <br />
             <? endif; ?>
             
