@@ -110,18 +110,8 @@
 
         <? if ($cart->isActive()): ?>
           <input class="cartId" type="hidden" name="ids[]" value="<?=$this->escapeHtmlAttr($cartId)?>" />
-          <a title="<?=$this->transEsc('Add to Book Bag') ?>" href="" class="cart-add hidden<? if(!$cart->contains($cartId)): ?> correct<? endif ?>"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-          <a title="<?=$this->transEsc('Remove from Book Bag') ?>" href="" class="cart-remove hidden<? if($cart->contains($cartId)): ?> correct<? endif ?>"><i class="fa fa-minus-square" aria-hidden="true"></i></a>
-          <noscript>
-            <form method="post" name="addForm" action="<?=$this->url('cart-processor')?>">
-              <input type="hidden" name="ids[]" value="<?=$this->escapeHtmlAttr($cartId)?>" />
-              <? if ($cart->contains($cartId)): ?>
-                <input class="btn btn-thulb" type="submit" name="delete" value="<?=$this->transEsc('Remove from Book Bag')?>"><i class="fa fa-minus-square" aria-hidden="true"></i></input>
-              <? else: ?>
-                <input class="btn btn-thulb" type="submit" name="add" value="<?=$this->transEsc('Add to Book Bag')?>"><i class="fa fa-plus-square" aria-hidden="true"></i></input>
-              <? endif; ?>
-            </form>
-          </noscript>
+          <a title="<?=$this->transEsc('Add to Book Bag') ?>" role="button" href="#" class="cart-add hidden<? if(!$cart->contains($cartId)): ?> correct<? endif ?>"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+          <a title="<?=$this->transEsc('Remove from Book Bag') ?>" role="button" href="#" class="cart-remove hidden<? if($cart->contains($cartId)): ?> correct<? endif ?>"><i class="fa fa-minus-square" aria-hidden="true"></i></a>
         <? endif; ?>
 
         <? /* Hierarchy tree link */ ?>
