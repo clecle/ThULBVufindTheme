@@ -26,7 +26,7 @@
   <? endif ?>
   <div class="media-body">
     <div class="row short-view">
-      <div class="col-sm-11 middle">
+      <div class="col-xs-11 middle">
         <div>
           <a href="<?=$this->recordLink()->getUrl($this->driver)?>" class="title getFull truncate" data-view="<?=$this->params->getOptions()->getListViewOption() ?>">
             <?=$this->record($this->driver)->getTitleHtml()?>
@@ -91,7 +91,7 @@
         <? endif; ?>
         <?=$this->record($this->driver)->getPreviews()?>
       </div>
-      <div class="col-sm-1 right hidden-print hidden-xs">
+      <div class="col-xs-1 right hidden-print">
         <? /* Display qrcode if appropriate: */ ?>
         <? if ($QRCode = $this->record($this->driver)->getQRCode("results")): ?>
           <?
@@ -110,8 +110,8 @@
 
         <? if ($cart->isActive()): ?>
           <input class="cartId" type="hidden" name="ids[]" value="<?=$this->escapeHtmlAttr($cartId)?>" />
-          <a title="<?=$this->transEsc('Add to Book Bag') ?>" role="button" href="#" class="cart-add hidden<? if(!$cart->contains($cartId)): ?> correct<? endif ?>"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-          <a title="<?=$this->transEsc('Remove from Book Bag') ?>" role="button" href="#" class="cart-remove hidden<? if($cart->contains($cartId)): ?> correct<? endif ?>"><i class="fa fa-minus-square" aria-hidden="true"></i></a>
+          <a title="<?=$this->transEsc('Add to Book Bag') ?>" role="button" href="#<?=$this->escapeHtmlAttr($this->driver->getUniqueID())?>" class="cart-add hidden<? if(!$cart->contains($cartId)): ?> correct<? endif ?>"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+          <a title="<?=$this->transEsc('Remove from Book Bag') ?>" role="button" href="#<?=$this->escapeHtmlAttr($this->driver->getUniqueID())?>" class="cart-remove hidden<? if($cart->contains($cartId)): ?> correct<? endif ?>"><i class="fa fa-minus-square" aria-hidden="true"></i></a>
         <? endif; ?>
 
         <? /* Hierarchy tree link */ ?>
