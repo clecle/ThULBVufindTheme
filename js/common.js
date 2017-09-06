@@ -503,4 +503,19 @@ $(document).ready(function commonDocReady() {
   }
 
   setupIeSupport();
+
+  /*
+   * smooth vertical scroll through page
+   * mainly used for filter-button in mobile-view
+   */
+  $('a[href^="#"]').on('click', function(event) {
+    var target = $(this.getAttribute('href'));
+    if( target.length ) {
+        event.preventDefault();
+        $('html, body').stop().animate({
+            scrollTop: target.offset().top
+        }, 1000);
+    }
+  });
+
 });

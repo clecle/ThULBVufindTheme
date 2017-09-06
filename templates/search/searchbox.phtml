@@ -47,16 +47,9 @@
           <option value="<?=$this->escapeHtmlAttr($handler['value'])?>"<?=$handler['selected'] ? ' selected="selected"' : ''?>><?=$handler['indent'] ? '-- ' : ''?><?=$this->transEsc($handler['label'])?></option>
           <? endforeach; ?>
         </select>
-          
         <? elseif ($handlerCount == 1): ?>
           <input type="hidden" name="type" value="<?=$this->escapeHtmlAttr($handlers[0]['value'])?>" />
         <? endif; ?>
-        
-        <? /* show Filter Button to switch to FacetList */ ?>
-        <a class="btn btn-primary input-lg hidden-lg hidden-md hidden-sm hidden-print" href="#FacetFilterSection" title="<?=$this->transEsc("jumptoFilter")?>">
-          <i class="fa fa-filter" aria-hidden="true"></i>
-        </a>
-
         <button title="<?=$this->transEsc("Find")?>" class="btn btn-primary input-lg" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
       </div>
     </div>
