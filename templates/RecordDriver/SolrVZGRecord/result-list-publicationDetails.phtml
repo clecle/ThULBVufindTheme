@@ -7,7 +7,7 @@
 <? endif; ?>
 <? $journalTitle = $this->driver->getContainerTitle(); $journalRef = $this->driver->getContainerReference(); $summDate = $this->driver->getPublicationDates();?>
 <? if (!empty($journalTitle)): ?>
-    <?=$this->transEsc('Published in')?>
+    <?=$this->transEsc('Published in')?>:
     <? $containerSource = $this->driver->getSourceIdentifier(); ?>
     <? $containerID = $this->driver->getContainerRecordID(); ?>
     <? /* TODO: handle highlighting more elegantly here: */?>

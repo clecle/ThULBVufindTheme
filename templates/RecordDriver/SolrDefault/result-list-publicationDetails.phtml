@@ -11,7 +11,7 @@
   <? $journalTitle = $this->driver->getContainerTitle(); $summDate = $this->driver->getPublicationDates(); ?>
   <? if (!empty($journalTitle)): ?>
     <?=!empty($summAuthor) ? '<br />' : ''?>
-    <?=$this->transEsc('Published in')?>
+    <?=$this->transEsc('Published in')?>:
     <? $containerSource = $this->driver->getSourceIdentifier(); ?>
     <? $containerID = $this->driver->getContainerRecordID(); ?>
     <? /* TODO: handle highlighting more elegantly here: */?>
