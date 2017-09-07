@@ -43,6 +43,12 @@
         <i class="fa fa-fw fa-lock" aria-hidden="true"></i> <?=$this->transEsc('Change Password') ?>
       </a>
     </div>
+  <? else: ?>
+    <div class="list-group">
+      <a href="<?=$this->url('myresearch-changepasswordlink') ?>" class="list-group-item<?=$this->active == 'newpasswordlink' ? ' active' : ''?>">
+        <i class="fa fa-fw fa-lock" aria-hidden="true"></i> <?=$this->transEsc('Change Password') ?>
+      </a>
+    </div>
   <? endif; ?>
 </div>
 <? if ($this->userlist()->getMode() !== 'disabled' && $user = $this->auth()->isLoggedIn()): ?>
