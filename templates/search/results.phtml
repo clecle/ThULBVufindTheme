@@ -84,6 +84,12 @@
             <? endif; ?>
           <? endforeach; ?>
         <? else: ?>
+        
+        <div class="visible-xs">
+          <a id="gotoFacets" class="btn btn-primary input-lg hidden-lg hidden-md hidden-sm hidden-print" href="#FacetFilterSection" title="Facetten">
+              <b><?=$this->transEsc('jumpTofilterResults') ?></b> <i class="fa fa-filter" aria-hidden="true"></i>
+          </a>
+        </div>
           <form class="form-inline" method="post" name="bulkActionForm" action="<?=$this->url('cart-searchresultsbulk')?>" data-lightbox data-lightbox-onsubmit="bulkFormHandler">
             <div class="row hidden-print">
               <div class="col-xs-12">
