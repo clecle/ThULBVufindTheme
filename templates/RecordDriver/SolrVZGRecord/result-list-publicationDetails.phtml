@@ -1,4 +1,12 @@
-<? $summAuthors = $this->driver->getPrimaryAuthorsWithHighlighting(); if (!empty($summAuthors)): ?>
+<?
+    $summAuthors = array_slice(array_merge(
+        array_slice($this->driver->getPrimaryAuthorsWithHighlighting(), 0, 1),
+        array_slice($this->driver->getSecondaryAuthors(), 0, 1),
+        array_slice($this->driver->getCorporateAuthors(), 0, 1)
+    ), 0, 2);
+    
+    if (!empty($summAuthors)): 
+?>
   <?=$this->transEsc('by')?>
   <? $authorCount = count($summAuthors); foreach ($summAuthors as $i => $summAuthor): ?>
     <a href="<?=$this->record($this->driver)->getLink('author', $this->highlight($summAuthor, null, true, false))?>" class="authorLink"><?=$this->highlight($summAuthor)?></a><?=$i + 1 < $authorCount ? ',' : ''?>
