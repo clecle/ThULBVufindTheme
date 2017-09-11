@@ -162,7 +162,10 @@
               <br />
             <? endif; ?>
             
-            <? if (isset($ilsDetails['queue']) && $ilsDetails['queue'] > 0): ?>
+            <? if (isset($ilsDetails['reminder']) && $ilsDetails['reminder'] > 2): ?>
+              <span class="text-danger"><?=$this->transEsc('Online deactivated because of reminders')?></span>
+              <br />
+            <? elseif (isset($ilsDetails['queue']) && $ilsDetails['queue'] > 0): ?>
               <span class="text-danger"><?=$this->transEsc('No renewal bacause of reservations')?></span>
               <br />
             <? elseif (isset($ilsDetails['renew']) && $ilsDetails['renew'] > 2): ?>
