@@ -9722,4 +9722,18 @@ span[class^="services-"], span[class*=" services-"] span:first-of-type::before {
   padding: 8px 0;
   text-align: center; }
 
+.tutorial {
+  color: white;
+  text-align: center;
+  background-color: #568ebe;
+  padding: 20px;
+  margin-top: 20px; }
+
+.tutorial_sub > h1 {
+  color: #f9b200; }
+
+.tutorial_sub > h5 {
+  color: #f9b200;
+  text-transform: uppercase; }
+
 /*# sourceMappingURL=thulb.css.map */
