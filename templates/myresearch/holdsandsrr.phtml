@@ -65,9 +65,11 @@
               } else if (isset($ilsDetails['title']) && !empty($ilsDetails['title'])){
                 // If the record is not available in Solr, perhaps the ILS driver sent us a title we can show...
                 echo $this->escapeHtml($ilsDetails['title']);
+                echo '<br />';
               } else {
                 // Last resort -- indicate that no title could be found.
                 echo $this->transEsc('Title not available');
+                echo '<br />';
               }
             ?>
             <? $listAuthors = $resource->getPrimaryAuthors(); if (!empty($listAuthors)): ?>
