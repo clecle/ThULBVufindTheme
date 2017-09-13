@@ -1,4 +1,6 @@
 @brand-primary:             #568ebe;
+@brand-secondary:           #f9b200;
+
 @input-border-focus:        #568ebe;
 
 @border-radius-base:        0px;
@@ -7,6 +9,7 @@
 @import "bootstrap";
 
 @brand-primary:             #568ebe;
+@brand-secondary:           #f9b200;
 
 @import "components/search";
 
@@ -209,4 +212,19 @@ span[class^="services-"], span[class*=" services-"] span:first-of-type::before {
   margin: 10px 0 20px;
   padding: 8px 0;
   text-align: center;
+}
+
+.tutorial {
+    color: white;
+    text-align: center;
+    background-color: @brand-primary;
+    padding: 20px;
+    margin-top: 20px;
+}
+.tutorial_sub > h1 {
+    color: @brand-secondary;
+}
+.tutorial_sub > h5 {
+    color: @brand-secondary;
+    text-transform: uppercase;
 }

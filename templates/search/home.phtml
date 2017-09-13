@@ -35,7 +35,31 @@
 JS;
   ?>
   <?=$this->inlineScript(\Zend\View\Helper\HeadScript::SCRIPT, $ilsStatusScript, 'SET'); ?>
-  <div class="startpage">
-    <?=$this->context($this)->renderInContext("search/searchbox.phtml", ['ignoreHiddenFilterMemory' => true])?>
+  <div class="row">
+    <div class="startpage">
+      <?=$this->context($this)->renderInContext("search/searchbox.phtml", ['ignoreHiddenFilterMemory' => true])?>
+    </div>
   </div>
+  
 </div>
+
+  <div class="row tutorial">
+    <div class="col-sm-4 col-xs-12 tutorial_sub">
+        <h1>1.</h1>
+        <h5>Was suchst Du?</h5>
+        Wähle vorab in welchem Feld du suchen möchtest.
+        <img alt="tutorial step1" src="<?=$this->imageLink('Tut_SearchBox.png')?>">
+    </div>
+    <div class="col-sm-4 col-xs-12 tutorial_sub">
+        <h1>2.</h1>
+        <h5>Hier geht's los</h5>
+        Suche im physischen und digitalen Bestand der ThULB.
+        <img alt="tutorial step2" src="<?=$this->imageLink('Tut_BooksM.png')?>">
+    </div>
+    <div class="col-sm-4 col-xs-12 tutorial_sub">
+        <h1>3.</h1>
+        <h5>Du brauchst noch mehr?</h5>
+        Suche in den von der ThULB lizenzierten Datenbanken.
+        <img alt="tutorial step3" src="<?=$this->imageLink('TutArticleM.png')?>">
+    </div>
+  </div>
