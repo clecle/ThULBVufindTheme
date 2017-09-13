@@ -112,7 +112,7 @@
                 <? $callno = $this->thulb_holdinghelper()->getCallnumber($row); ?>
                 <? if ($callno): ?>
                   <dt><?=$this->transEsc("Call Number")?>:</dt>
-                  <dd><strong><?=$callno; ?></strong></dd>
+                  <dd><strong><?=$callno ?></strong></dd>
                 <? endif; ?>
                 <? $comments = $this->thulb_holdinghelper()->getHoldingComments($row); ?>
                 <? if (!empty($comments)) : ?>
@@ -123,7 +123,7 @@
                       <ul>
                         <? foreach ($comments as $comment): ?>
                           <? if (!empty($comment)): ?>
-                            <li><?=$this->escapeHtml($comment) ?></li>
+                            <li><?=$comment ?></li>
                           <? endif; ?>
                         <? endforeach; ?>
                       </ul>
