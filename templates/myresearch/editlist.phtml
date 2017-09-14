@@ -38,11 +38,13 @@
           <label>
             <input id="list_public_1" type="radio" name="public" value="1"<? if ($this->list->isPublic()): ?> checked="checked"<? endif; ?>/> <?=$this->transEsc('Public') ?>
           </label>
+          <a title="<?=$this->transEsc('explain_publicList') ?>">?</a>
         </div>
         <div class="radio inline">
           <label>
             <input id="list_public_0" type="radio" name="public" value="0"<? if (!$this->list->isPublic()): ?> checked="checked"<? endif; ?>/> <?=$this->transEsc('Private') ?>
           </label>
+          <a title="<?=$this->transEsc('explain_privateList') ?>">?</a>
         </div>
       </div>
     </div>
