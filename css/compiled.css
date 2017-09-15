@@ -9106,7 +9106,7 @@ img {
   background-color: #fff;
   fill: #eaeaea;
   outline-color: #c38835;
-  stroke: #265680; }
+  stroke: #568ebe; }
 
 /* --- Table wrapping to prevent horizontal overflow --- */
 .table {
@@ -9153,7 +9153,7 @@ span[class^="services-"], span[class*=" services-"] span:first-of-type::before {
   content: ""; }
 
 .thulb-topline {
-  background-color: #265680;
+  background-color: #568ebe;
   height: 5px;
   margin: 0;
   padding: 0;
@@ -9216,7 +9216,7 @@ span[class^="services-"], span[class*=" services-"] span:first-of-type::before {
   width: 100%; }
 
 .btn-thulb {
-  color: #265680;
+  color: #568ebe;
   border: none;
   background-color: transparent; }
 
@@ -9229,7 +9229,7 @@ span[class^="services-"], span[class*=" services-"] span:first-of-type::before {
 .tutorial {
   color: white;
   text-align: center;
-  background-color: #265680;
+  background-color: #568ebe;
   padding: 20px;
   margin-top: 20px; }
 
