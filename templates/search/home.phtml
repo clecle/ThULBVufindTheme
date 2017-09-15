@@ -35,13 +35,15 @@
 JS;
   ?>
   <?=$this->inlineScript(\Zend\View\Helper\HeadScript::SCRIPT, $ilsStatusScript, 'SET'); ?>
-  <div class="row">
-    <div class="startpage">
-      <?=$this->context($this)->renderInContext("search/searchbox.phtml", ['ignoreHiddenFilterMemory' => true])?>
+
+  <div class="row startpage_logo">
+    <div class="row startpage_logo_img">
+      <img alt="welcome thulbsuche" src="<?=$this->imageLink('thulbsuche_l.png')?>">
     </div>
   </div>
-  
-</div>
+  <div class="row startpage_searchbox">
+    <?=$this->context($this)->renderInContext("search/searchbox.phtml", ['ignoreHiddenFilterMemory' => true])?>
+  </div>
 
   <div class="row tutorial">
     <div class="col-sm-4 col-xs-12 tutorial_sub">
@@ -63,3 +65,4 @@ JS;
         <img alt="tutorial step3" src="<?=$this->imageLink('TutArticleM.png')?>">
     </div>
   </div>
+</div>
