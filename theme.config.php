@@ -8,4 +8,5 @@ return array(
             'record' => 'ThULB\View\Helper\Root\Factory::getRecord',
         ],
     ],
+    'favicon' => 'thulb_favicon.ico',
 );
