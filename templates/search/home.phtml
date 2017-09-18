@@ -31,6 +31,7 @@
                 $('.searchHomeContent').append(response.data);
             }
         });
+        $("#searchForm_lookfor").focus();
       });
 JS;
   ?>
@@ -49,19 +50,19 @@ JS;
     <div class="col-sm-4 col-xs-12 tutorial_sub">
         <h1>1.</h1>
         <h5>Was suchst Du?</h5>
-        Wähle vorab in welchem Feld du suchen möchtest.
+        <div class="tutorial_txt">Wähle vorab in welchem Feld du suchen möchtest.</div>
         <img alt="tutorial step1" src="<?=$this->imageLink('Tut_SearchBox.png')?>">
     </div>
     <div class="col-sm-4 col-xs-12 tutorial_sub">
         <h1>2.</h1>
         <h5>Hier geht's los</h5>
-        Suche im physischen und digitalen Bestand der ThULB.
+        <div class="tutorial_txt">Suche im physischen und digitalen Bestand der ThULB.</div>
         <img alt="tutorial step2" src="<?=$this->imageLink('Tut_BooksM.png')?>">
     </div>
     <div class="col-sm-4 col-xs-12 tutorial_sub">
         <h1>3.</h1>
         <h5>Du brauchst noch mehr?</h5>
-        Suche in den von der ThULB lizenzierten Datenbanken.
+        <div class="tutorial_txt">Suche in digitalen Angeboten mit Zugriff auf Volltexte und bibliografische Nachweise.</div>
         <img alt="tutorial step3" src="<?=$this->imageLink('TutArticleM.png')?>">
     </div>
   </div>
