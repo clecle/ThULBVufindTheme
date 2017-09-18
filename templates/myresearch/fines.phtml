@@ -35,7 +35,7 @@
             <a href="<?=$this->recordLink()->getUrl($record['driver'])?>"><?=$this->escapeHtml(trim($record['title'], '/:'))?></a>
           <? endif; ?>
         </td>
-        <td><?=isset($record['fine']) ? $this->escapeHtml($record['fine']) : ''?></td>
+        <td><?=isset($record['fine']) ? $this->transEsc('FeeTypes::' . $this->escapeHtml($record['fine'])) : ''?></td>
         <td><?=isset($record['createdate']) ? $this->escapeHtml(trim($record['createdate'])) : ''?></td>
         <td><?=isset($record['balance']) ? $this->safeMoneyFormat($record['balance']/100.00) : ''?></td>
       </tr>
