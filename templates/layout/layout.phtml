@@ -121,6 +121,7 @@ JS;
       $this->headScript()->appendScript($setupJS);
     ?>
     <?=$this->headScript()?>
+    
   </head>
   <body class="<? if ($this->layout()->rtl): ?> rtl<? endif; ?>">
 
@@ -187,5 +188,5 @@ JS;
       <?=$this->inlineScript(\Zend\View\Helper\HeadScript::FILE, "https://www.google.com/recaptcha/api.js?onload=recaptchaOnLoad&render=explicit&hl=" . $this->layout()->userLang, 'SET')?>
     <? endif; ?>
 
-  </body>
+  </body>  
 </html>
