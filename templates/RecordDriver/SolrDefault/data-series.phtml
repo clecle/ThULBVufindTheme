@@ -4,7 +4,7 @@
      name.  We should account for both cases to maximize compatibility. */?>
   <? if (is_array($field)): ?>
     <? if (!empty($field['name'])): ?>
-      <? if ($field['id']) : ?>
+      <? if (isset($field['id']) && $field['id']) : ?>
         <? $url = $this->recordLink()->related(['type' => 'bib', 'value' => $field['id']]); ?>
         <a href="<?=$url?>"><?=$this->escapeHtml($field['name'])?></a>
       <? else: ?>

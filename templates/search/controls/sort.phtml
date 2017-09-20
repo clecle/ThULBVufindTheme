@@ -1,6 +1,6 @@
 <? $list = $this->params->getSortList(); if (!empty($list)): ?>
   <form class="form-inline" action="<?=$this->currentPath()?>" method="get" name="sort">
-    <? if ($useHiddenFilters): ?>
+    <? if (isset($useHiddenFilters) && $useHiddenFilters): ?>
       <?=$this->results->getUrlQuery()->asHiddenFields(array('sort' => '/.*/'));?>
     <? endif; ?>
 
