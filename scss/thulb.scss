@@ -279,3 +279,8 @@ span[class^="services-"], span[class*=" services-"] span:first-of-type::before {
 .tutorial_txt {
     min-height: 40px;
 }
+
+.testbg {
+    background-image: url("/themes/thulb/images/TestTile.png");
+    background-repeat: repeat;
+}
