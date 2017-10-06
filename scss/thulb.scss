@@ -280,7 +280,12 @@ span[class^="services-"], span[class*=" services-"] span:first-of-type::before {
     min-height: 40px;
 }
 
-.testbg {
+.testingbg {
     background-image: url("/themes/thulb/images/TestTile.png");
+    background-repeat: repeat;
+}
+
+.developmentbg {
+    background-image: url("/themes/thulb/images/DevTile.png");
     background-repeat: repeat;
 }
