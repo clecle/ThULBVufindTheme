@@ -68,12 +68,12 @@
               </div>
             <? else: ?>
               <div class="col-xs-1">
-                  <input class="checkbox-select-item" type="checkbox" name="renewSelectedIDS[]" value="<?=$this->escapeHtmlAttr($ilsDetails['renew_details'])?>" disabled="disabled" />
+                <input class="checkbox-select-item" type="checkbox" name="renewSelectedIDS[]" value="<?=$this->escapeHtmlAttr($ilsDetails['renew_details'])?>" disabled="disabled" />
               </div>
             <? endif; ?>
           <? endif; ?>
           
-          <div class="col-sm-9">
+          <div class="col-xs-11">
             <?
               // If this is a non-missing Solr record, we should display a link:
               if (is_a($resource, 'VuFind\\RecordDriver\\SolrDefault') && !is_a($resource, 'VuFind\\RecordDriver\\Missing')) {
