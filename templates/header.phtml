@@ -33,7 +33,7 @@
               <a title="<?=$this->transEsc("Your Account")?>" href="<?=$this->url('myresearch-home', array(), array('query' => array('redirect' => 0)))?>"><?=$this->transEsc("Useraccount")?> <i class="fa fa-user" aria-hidden="true"></i></a>
             </li>
             <li class="logoutOptions<? if(!$account->isLoggedIn()): ?> hidden<? endif ?>">
-              <a title="<?=$this->transEsc("Log Out")?>" href="<?=$this->url('myresearch-logout')?>" class="logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+              <a title="<?=$this->transEsc("Log Out")?>" href="<?=$this->url('myresearch-logout')?>" class="logout"><?=$this->transEsc("Log Out")?> <i class="fa fa-sign-out" aria-hidden="true"></i></a>
             </li>
             <li id="loginOptions"<? if($account->isLoggedIn()): ?> class="hidden"<? endif ?>>
               <? if ($account->getSessionInitiator($this->serverUrl($this->url('myresearch-home')))): ?>
