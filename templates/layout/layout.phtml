@@ -69,7 +69,6 @@
         if ($cart->isActive()) {
           $this->headScript()->appendFile("vendor/cookies.js");
           $this->headScript()->appendFile("cart.js");
-          $this->headScript()->appendFile("thulb_cart.js");
           $domain = $cart->getCookieDomain();
           if (!empty($domain)) {
             $this->headScript()->appendScript(
