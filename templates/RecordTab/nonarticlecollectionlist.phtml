@@ -3,8 +3,13 @@
   $this->headTitle($this->translate($this->tab->getDescription()) . ': ' . $this->driver->getBreadcrumb());
 
   // Get search results
-  $results = $this->tab->getResults();
-  $params = $this->tab->getParams();
+  try {
+      $results = $this->tab->getResults();
+      $params = $this->tab->getParams();
+  } catch (\Exception $ex) {
+      $results = false;
+      $params = false;
+  }
   $searchDetails = ['results' => $results, 'params' => $params, 'indexStart' => 1];
   $this->jsTranslations()->addStrings(
         [
@@ -12,7 +17,7 @@
         ]
     );
 ?>
-<? if (($recordTotal = $results->getResultTotal()) > 0): // only display these at very top if we have results ?>
+<? if ($results && $params && ($recordTotal = $results->getResultTotal()) > 0): // only display these at very top if we have results ?>
   <? foreach ($results->getRecommendations('top') as $current): ?>
     <?=$this->recommend($current)?>
   <? endforeach; ?>
