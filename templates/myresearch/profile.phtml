@@ -35,12 +35,14 @@
         $accountinfo = [
             'group'  => (isset($this->profile['groupcode'])) ? $this->transEsc('UserGroup::' . $this->profile['groupcode']) : null,
             'status' => (isset($this->profile['statuscode'])) ? $this->transEsc('UserStatus::' . $this->profile['statuscode']) : null,
+            'note'   => (isset($this->profile['note'])) ? $this->escapeHtml($this->profile['note']) : null
           ];
         echo $this->renderArray(
           $arrTemplate, $accountinfo,
           [
             $this->transEsc('User Group') => 'group',
             $this->transEsc('User Status') => 'status',
+            $this->transEsc('User Note') => 'note',
           ]
         ); ?>
       <? if ($showHomeLibForm): ?>
