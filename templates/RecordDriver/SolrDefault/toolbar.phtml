@@ -29,23 +29,5 @@
     </li>
   <? endif; ?>
 
-  <? if ($cart->isActive()): ?>
-    <li class="bookbag-menu">
-      <input class="cartId" type="hidden" name="ids[]" value="<?=$this->escapeHtmlAttr($cartId)?>" />
-      <a title="<?=$this->transEsc('Add to Book Bag') ?>" href="#" class="cart-add hidden<? if(!$cart->contains($cartId)): ?> correct<? endif ?>">
-        <i class="fa fa-plus-square" aria-hidden="true"></i></a>
-      <a title="<?=$this->transEsc('Remove from Book Bag') ?>" href="#" class="cart-remove hidden<? if($cart->contains($cartId)): ?> correct<? endif ?>">
-        <i class="fa fa-minus-square" aria-hidden="true"></i></a>
-      <noscript>
-        <form method="post" name="addForm" action="<?=$this->url('cart-processor')?>">
-          <input type="hidden" name="ids[]" value="<?=$this->escapeHtmlAttr($cartId)?>" />
-          <? if ($cart->contains($cartId)): ?>
-            <input class="btn btn-thulb" type="submit" name="delete" title="<?=$this->transEsc('Remove from Book Bag')?>"><i class="fa fa-minus-square" aria-hidden="true"></i></input>
-          <? else: ?>
-            <input class="btn btn-thulb" type="submit" name="add" title="<?=$this->transEsc('Add to Book Bag')?>"><i class="fa fa-plus-square" aria-hidden="true"></i></input>
-          <? endif; ?>
-        </form>
-      </noscript>
-    </li>
-  <? endif; ?>
+  <?=$this->render('record/cart-buttons.phtml', ['id' => $this->driver->getUniqueId(), 'source' => $this->driver->getSourceIdentifier()]); ?>
 </ul>

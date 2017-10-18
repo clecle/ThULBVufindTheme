@@ -49,7 +49,10 @@ $this->layout()->ignoreHiddenFilterMemory = true;
         <? endif; ?>
         <li class="disabled"><a href="#">&laquo;</a></li>
         <? endif; ?>
-        #<?= $this->localizedNumber($this->scrollData['currentPosition']) . ' ' . $this->transEsc('of') . ' ' . $this->localizedNumber($this->scrollData['resultTotal']) . ' ' . $this->transEsc('results') ?>
+        <?=$this->transEsc('of_num_results', [
+                                '%%position%%' => $this->localizedNumber($this->scrollData['currentPosition']),
+                                '%%total%%' => $this->localizedNumber($this->scrollData['resultTotal'])
+                            ]) ?>
         <? if ($this->scrollData['nextRecord']): ?>
         <li>
             <a href="<?= $this->recordLink()->getUrl($this->scrollData['nextRecord']) ?>" title="<?= $this->transEsc('Next Search Result') ?>" rel="nofollow">&raquo;</a>
