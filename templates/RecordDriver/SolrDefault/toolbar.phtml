@@ -8,7 +8,7 @@
   $cart = $this->cart();
   $cartId = $this->driver->getSourceIdentifier() . '|' . $this->driver->getUniqueId();
 ?>
-<ul class="record-nav nav nav-pills hidden-print pull-right" style="padding-top: 15px;">
+<ul class="nav nav nav-pills hidden-print pull-right" style="padding-top: 15px;">
   <? if (count($this->driver->getCitationFormats()) > 0): ?>
     <li><a title="<?=$this->transEsc('Cite this')?>" class="cite-record" data-lightbox href="<?=$this->recordLink()->getActionUrl($this->driver, 'Cite')?>" rel="nofollow"><i class="fa fa-quote-left" aria-hidden="true"></i></a></li>
   <? endif; ?>
@@ -28,6 +28,7 @@
       </ul>
     </li>
   <? endif; ?>
-
-  <?=$this->render('record/cart-buttons.phtml', ['id' => $this->driver->getUniqueId(), 'source' => $this->driver->getSourceIdentifier()]); ?>
+  <li>
+    <?=$this->render('record/cart-buttons.phtml', ['id' => $this->driver->getUniqueId(), 'source' => $this->driver->getSourceIdentifier()]); ?>
+  </li>
 </ul>
