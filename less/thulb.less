@@ -16,7 +16,7 @@
 @import "../../bootstrap3/less/components/offcanvas";
 @import "../../bootstrap3/less/components/record";
 @import "components/search";
-@import "../../bootstrap3/less/components/sidebar";
+@import "components/sidebar";
 @import "../../bootstrap3/less/components/similar-carousel";
 @import "../../bootstrap3/less/components/sliders";
 
@@ -248,14 +248,20 @@ footer {
 .myresearch-menu a {
   display: block;
   padding: 10px 15px;
+  border: 1px solid @list-group-border;
+  border-bottom: 0;
+  
   &:hover,
   &:focus { background-color: @nav-link-hover-bg; }
 
   .badge { float: right; }
 }
+
+.myresearch-menu a:last-child { border-bottom: 1px solid @list-group-border; }
+
 .myresearch-menu a.active {
-  background-color: @brand-primary;
-  color: #fff;
+  background-color: @brand-primary !important;
+  color: #fff !important;
 
   .badge {
     background-color: #fff;
@@ -329,7 +335,7 @@ span[class*=" services-"] span:first-of-type::before { content: ""; }
 }
 
 .thulb-topline {
-    background-color: @brand_primary;
+    background-color: @brand-primary;
     height: 5px;
     margin: 0;
     padding: 0;
@@ -452,4 +458,13 @@ span[class*=" services-"] span:first-of-type::before { content: ""; }
 .developmentbg {
     background-image: url("/themes/thulb/images/DevTile.png");
     background-repeat: repeat;
+}
+
+.facet-group a, .myresearch-menu a {
+    color: @text-color;
+    &:hover {
+        color: @text-color;
+        background-color: @nav-link-hover-bg;
+        text-decoration: none;
+    }
 }

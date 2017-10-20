@@ -9380,7 +9380,7 @@ header .container.navbar, header footer.navbar {
   margin-right: .3rem; }
 
 .result .cart-link-icon {
-  color: #333333;
+  color: #568ebe;
   /* .fa-fw */
   width: 1.28571429em;
   text-align: center; }
@@ -9757,8 +9757,8 @@ a.truncate {
 .active-filters .facet,
 .facet-group .active {
   padding-right: .65rem;
-  background-color: #568ebe;
-  color: #fff; }
+  background-color: #568ebe !important;
+  color: #fff !important; }
   .active-filters .facet a,
   .facet-group .active a {
     color: #fff; }
@@ -10109,15 +10109,20 @@ footer {
 
 .myresearch-menu a {
   display: block;
-  padding: 10px 15px; }
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-bottom: 0; }
   .myresearch-menu a:hover, .myresearch-menu .channel .channel-record.is-selected, .channel .myresearch-menu .channel-record.is-selected, .myresearch-menu a:focus {
     background-color: #eeeeee; }
   .myresearch-menu a .badge {
     float: right; }
 
+.myresearch-menu a:last-child {
+  border-bottom: 1px solid #ddd; }
+
 .myresearch-menu a.active {
-  background-color: #568ebe;
-  color: #fff; }
+  background-color: #568ebe !important;
+  color: #fff !important; }
   .myresearch-menu a.active .badge {
     background-color: #fff;
     color: #222222; }
@@ -10305,5 +10310,12 @@ span[class*=" services-"] span:first-of-type::before {
 .developmentbg {
   background-image: url("/themes/thulb/images/DevTile.png");
   background-repeat: repeat; }
+
+.facet-group a, .myresearch-menu a {
+  color: #333333; }
+  .facet-group a:hover, .facet-group .channel .channel-record.is-selected, .channel .facet-group .channel-record.is-selected, .myresearch-menu a:hover, .myresearch-menu .channel .channel-record.is-selected, .channel .myresearch-menu .channel-record.is-selected {
+    color: #333333;
+    background-color: #eeeeee;
+    text-decoration: none; }
 
 /*# sourceMappingURL=compiled.css.map */

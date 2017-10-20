@@ -1,7 +1,7 @@
 // Thumbnail sizes for media items: search results, list entries, record views
-@thumbnail-width-small:   60px;
-@thumbnail-width-medium: 100px;
-@thumbnail-width-large:  160px;
+@thumbnail-width-small:   60px !default;
+@thumbnail-width-medium: 100px !default;
+@thumbnail-width-large:  160px !default;
 
 // Hide these on mobile
 @media (max-width: 767px) {
@@ -161,7 +161,7 @@ header .container.navbar { margin-bottom: 0; }
 .btn-bookbag-toggle form { display: inline; }
 .cart-link-icon.fa { margin-right: .3rem; }
 .result .cart-link-icon {
-  color: @text-color;
+  color: @brand-primary;
   /* .fa-fw */
   width: 1.28571429em;
   text-align: center;
