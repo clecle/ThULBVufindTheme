@@ -304,7 +304,7 @@ function setupFacets() {
     window.location.assign($(this).attr('href'));
   });
 
-  $('ul[class=pagination] li,select[name=sort] option,.authorLink,.langOption,.facetAND,.facetOR,.facetTAB,.facetRANGE,#fulltext_limit,#exclude_newspapers').click(function resultlistOverlay() {
+  $('ul[class=pagination] li,select[name=sort] option,.authorLink,.langOption,.facetAND,.facetOR,.facetTAB,.facetRANGE,.checkbox-filter').click(function resultlistOverlay() {
     $("#searchcontent").css('pointer-events', 'none');
     $("#searchcontent").css('opacity', '0.5');
 

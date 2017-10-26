@@ -468,3 +468,10 @@ span[class*=" services-"] span:first-of-type::before { content: ""; }
         text-decoration: none;
     }
 }
+
+.checkboxFilter a {
+    &:hover {
+        color: $text-color;
+        text-decoration: none;
+    }
+}

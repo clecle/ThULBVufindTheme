@@ -10318,4 +10318,8 @@ span[class*=" services-"] span:first-of-type::before {
     background-color: #eeeeee;
     text-decoration: none; }
 
+.checkboxFilter a:hover, .checkboxFilter .channel .channel-record.is-selected, .channel .checkboxFilter .channel-record.is-selected {
+  color: #333333;
+  text-decoration: none; }
+
 /*# sourceMappingURL=compiled.css.map */

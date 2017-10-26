@@ -7,23 +7,21 @@
 <? if ($results->getResultTotal() > 0): ?>
   <!--h4><?=$this->transEsc(isset($this->overrideSideFacetCaption) ? $this->overrideSideFacetCaption : 'Narrow Search')?></h4-->
 <? endif; ?>
-<? $checkboxFilters = $results->getParams()->getCheckboxFacets(); if (count($checkboxFilters) > 0): ?>
-<?
-  $html = '';
-  $shown = 0;
-  foreach ($checkboxFilters as $current) {
-    $html .= '<label class="checkbox';
-    if($results->getResultTotal() < 1 && !$current['selected'] && !$current['alwaysVisible']) {
-      $html .= ' hidden';
-    } else {
-      $shown ++;
+<? $checkboxFilters = $results->getParams()->getCheckboxFacets(); ?>
+<? $checkboxesShown = false; ?>
+<? if (count($checkboxFilters) > 0):
+    foreach ($checkboxFilters as $current) {
+      if ($results->getResultTotal() > 0 || $current['selected'] || $current['alwaysVisible']) {
+        $checkboxesShown = true;
+        break;
+      }
     }
-    $html .= '"><input type="checkbox" name="filter[]" value="'.$this->escapeHtmlAttr($current['filter']).'"
-      '. ($current['selected'] ? 'checked="checked"' : '') .' id="'.$this->escapeHtmlAttr(str_replace(' ', '', $current['desc'])).'"
-      onclick="document.location.href=\''.($current['selected'] ? $results->getUrlQuery()->removeFilter($current['filter']) : $results->getUrlQuery()->addFilter($current['filter'])).'\';" />'.$this->transEsc($current['desc']).'</label>';
-  }
-?>
-  <div class="checkboxFilter<?if($shown == 0):?> hidden<? endif; ?>"><?=$html ?></div>
+  ?>
+  <?if ($checkboxesShown):?>
+    <div class="checkboxFilter">
+      <?=$this->context($this)->renderInContext('Recommend/SideFacets/checkbox-filters.phtml', ['checkboxFilters' => $checkboxFilters, 'results' => $results]); ?>
+    </div>
+  <? endif; ?>
 <? endif; ?>
 <? $extraFilters = isset($this->extraSideFacetFilters) ? $this->extraSideFacetFilters : []; ?>
 <? $collapsedFacets = $this->recommend->getCollapsedFacets() ?>
