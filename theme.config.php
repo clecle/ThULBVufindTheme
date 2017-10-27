@@ -9,4 +9,7 @@ return array(
         ],
     ],
     'favicon' => 'thulb_favicon.ico',
+    'js' => array(
+            'thulb.js'
+        ),
 );
