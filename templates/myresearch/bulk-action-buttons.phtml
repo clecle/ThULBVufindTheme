@@ -20,7 +20,7 @@
     <? $exportOptions = $this->export()->getActiveFormats('bulk'); if (count($exportOptions) > 0): ?>
       <button class="btn btn-thulb" type="submit" name="export" value="<?=$this->transEsc('Export')?>" title="<?=$this->transEsc('export_selected')?>"><i class="fa fa-share" aria-hidden="true"></i></button>
     <? endif; ?>
-    <button class="btn btn-thulb" type="submit" name="print" value="<?=$this->transEsc('Print')?>" title="<?=$this->transEsc('print_selected')?>" data-lightbox-ignore><i class="fa fa-print" aria-hidden="true"></i></button>
+    <button class="btn btn-thulb" type="submit" name="print" value="<?=$this->transEsc('Print')?>" title="<?=$this->transEsc('print_selected')?>" data-lightbox-ignore><i class="fa fa-printer" aria-hidden="true"></i></button>
     <? if ($this->cart()->isActive()): ?>
       <button class="btn btn-thulb" id="<?=$this->idPrefix?>updateCart" type="submit" name="add" name="bookbag" title="<?=$this->transEsc('Add to Book Bag')?>"><i class="fa fa-plus-square" aria-hidden="true"></i></button>
     <? endif; ?>
