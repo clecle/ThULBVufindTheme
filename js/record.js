@@ -183,7 +183,7 @@ function ajaxLoadTab($newTab, tabid, setHash) {
   })
   .done(function ajaxLoadTabDone(data) {
     $newTab.html(data);
-    $('#sort_options_1').change(function jumpMenu(){ $(this).parent('form').submit(); });
+    $('select[name=sort]').change(function jumpMenu(){ $(this).parent('form').submit(); });
     if (data.length > 0) {
       $('.' + tabid).parent().removeClass('hidden');
     }
