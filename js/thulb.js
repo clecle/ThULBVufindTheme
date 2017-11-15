@@ -116,6 +116,11 @@ $(document).ready(function thulbDocReady() {
     setupTruncations();
     setupThulbFacets();
     setAsyncResultNum();
+    
+    $('.checkbox-select-all').change(function unsetDisabledCheckboxes() {
+        var $form = this.form ? $(this.form) : $(this).closest('form');
+        $form.find('.checkbox-select-item:disabled').prop('checked', false);
+    });
       
     // support other form input elements to auto submit
     $('input.jumpMenu').change(function jumpMenu(){ $(this).parent('form').submit(); });
