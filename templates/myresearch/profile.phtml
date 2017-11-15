@@ -10,6 +10,7 @@
 
     // Template for use by the renderArray helper:
     $arrTemplate = '<tr><th>%%LABEL%%:</th><td> %%VALUE%%</td></tr>';
+    $arrImportantTemplate = '<tr><th>%%LABEL%%:</th><td> <strong class="text-danger">%%VALUE%%</strong></td></tr>';
 ?>
 
 <div class="row">
@@ -42,9 +43,15 @@
           [
             $this->transEsc('User Group') => 'group',
             $this->transEsc('User Status') => 'status',
+          ]
+        );
+        echo $this->renderArray(
+          $arrImportantTemplate, $accountinfo,
+          [
             $this->transEsc('User Note') => 'note',
           ]
-        ); ?>
+        );
+        ?>
       <? if ($showHomeLibForm): ?>
         <tr><th><?=$this->transEsc('Preferred Library')?>:</th>
         <?
