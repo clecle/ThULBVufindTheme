@@ -1,4 +1,4 @@
-/*global deparam, grecaptcha, recaptchaOnLoad, resetCaptcha, syn_get_widget, userIsLoggedIn, VuFind */
+/*global deparam, getUrlRoot, grecaptcha, recaptchaOnLoad, resetCaptcha, syn_get_widget, userIsLoggedIn, VuFind */
 /*exported ajaxTagUpdate, recordDocReady */
 
 /**
@@ -296,6 +296,9 @@ function recordDocReady() {
       return true;
     }
     var tabid = this.className;
+    if (tabid === 'articlecollectionlist' || tabid === 'nonarticlecollectionlist') {
+        VuFind.cart.init();
+    }
     var $top = $(this).closest('.record-tabs');
     // if we're flagged to skip AJAX for this tab, we need special behavior:
     if ($li.hasClass('noajax')) {
@@ -331,7 +334,7 @@ function recordDocReady() {
   $('[data-background]').each(function setupBackgroundTabs(index, el) {
     backgroundLoadTab(el.className);
   });
-  
+
   registerTabEvents();
   applyRecordTabHash();
   fillEmptyHoldingsTab();
