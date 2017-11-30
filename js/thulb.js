@@ -139,3 +139,9 @@ $(document).ready(function thulbDocReady() {
         }
     });
 });
+
+document.addEventListener('VuFind.lightbox.rendered', function(event) {
+    $("[type='submit'][name='print']").on('click', function(event) {
+        $(this).closest('form').attr('target', '_blank');
+    });
+}, false);
