@@ -138,10 +138,18 @@ $(document).ready(function thulbDocReady() {
             }, 1000);
         }
     });
+    
+    $("button[type='submit'][name='print']").on('click', function(event) {
+        if ($('.checkbox-select-item:checked,checkbox-select-all:checked').length > 0) {
+            $(this).closest('form').attr('target', '_blank');
+        } else {
+            $(this).closest('form').attr('target', '_self');
+        }
+    });
 });
 
 document.addEventListener('VuFind.lightbox.rendered', function(event) {
-    $("[type='submit'][name='print']").on('click', function(event) {
+    $("button[type='submit'][name='print']").on('click', function(event) {
         $(this).closest('form').attr('target', '_blank');
     });
 }, false);
