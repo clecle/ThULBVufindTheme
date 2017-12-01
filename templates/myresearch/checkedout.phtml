@@ -170,15 +170,20 @@
               <br />
             <? endif; ?>
             
-            <? if (isset($ilsDetails['reminder']) && $ilsDetails['reminder'] > 2): ?>
-              <span class="text-danger"><?=$this->transEsc('Online deactivated because of reminders')?></span>
-              <br />
-            <? elseif (isset($ilsDetails['queue']) && $ilsDetails['queue'] > 0): ?>
-              <span class="text-danger"><?=$this->transEsc('No renewal bacause of reservations')?></span>
-              <br />
-            <? elseif (isset($ilsDetails['renew']) && $ilsDetails['renew'] > 2): ?>
-              <span class="text-danger"><?=$this->transEsc('Maximum number of renewals reached')?></span>
-              <br />
+            <?if (!isset($ilsDetails['renewable']) || !$ilsDetails['renewable']) : ?>
+                <? if (isset($ilsDetails['reminder']) && $ilsDetails['reminder'] > 2): ?>
+                  <span class="text-danger"><?=$this->transEsc('Online deactivated because of reminders')?></span>
+                  <br />
+                <? elseif (isset($ilsDetails['queue']) && $ilsDetails['queue'] > 0): ?>
+                  <span class="text-danger"><?=$this->transEsc('No renewal bacause of reservations')?></span>
+                  <br />
+                <? elseif (isset($ilsDetails['renew']) && $ilsDetails['renew'] > 2): ?>
+                  <span class="text-danger"><?=$this->transEsc('Maximum number of renewals reached')?></span>
+                  <br />
+                <? else: ?>
+                  <span class="text-danger"><?=$this->transEsc('Renewal not possible')?></span>
+                  <br />
+                <? endif; ?>
             <? endif; ?>
 
             <? if ($showStatus && isset($ilsDetails['message']) && !empty($ilsDetails['message'])): ?>
