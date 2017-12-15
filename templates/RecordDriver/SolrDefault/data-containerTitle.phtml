@@ -6,5 +6,4 @@
     ? $this->recordLink()->getUrl("$containerSource|$containerID")
     : $this->record($this->driver)->getLink('journaltitle', $data);
 ?>
-<a href="<?=$link?>"><?=$this->escapeHtml($data)?></a>
-<?=empty($ref) ? '' : $this->escapeHtml($ref)?>
+<a href="<?=$link?>"><?=$this->escapeHtml($data)?></a><?=empty($ref) ? '' : ', ' . $this->escapeHtml($ref)?>
