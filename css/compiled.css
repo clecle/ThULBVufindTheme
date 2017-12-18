@@ -9030,6 +9030,11 @@ body.rtl .modal-loading {
 .recordcover {
   max-height: 300px; }
 
+.browzine .recordcover {
+  margin-top: 2px;
+  margin-bottom: 4px;
+  box-shadow: 1px 1px 3px rgba(47, 52, 64, 0.72); }
+
 @media (max-width: 767px) {
   .record .media-left,
   .record .media-right {
@@ -9131,7 +9136,7 @@ body.rtl .modal-loading {
   line-height: 1.42857;
   border-radius: 4px; }
   .tagList .tag.selected {
-    background-color: #265680; }
+    background-color: #337ab7; }
     .tagList .tag.selected a {
       color: #fff; }
     .tagList .tag.selected .badge {
@@ -9147,7 +9152,7 @@ body.rtl .modal-loading {
   display: inline; }
 
 .tagList.loggedin .tag:not(.selected) .badge:hover {
-  background-color: #028302; }
+  background-color: #5cb85c; }
 
 .citation .pace-car th,
 .citation .pace-car td {
@@ -9391,7 +9396,7 @@ header .container.navbar, header footer.navbar {
 @media (min-width: 768px) {
   .result-body {
     float: left;
-    width: 75%; }
+    width: 100%; }
 
   .result-links {
     float: left;
